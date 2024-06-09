@@ -9,7 +9,7 @@ namespace TemplateFx
 
     public class ViewPlay : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI textLevel;
+        [SerializeField] private TextMeshProUGUI textLevel;
         // Start is called before the first frame update
         public void ViewPlayStart()
         {
