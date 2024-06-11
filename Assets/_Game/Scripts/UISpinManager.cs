@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening; // DoTween kütüphanesini kullanmak için gerekli
 
 public class UISpinManager : MonoBehaviour
 {
@@ -10,14 +11,16 @@ public class UISpinManager : MonoBehaviour
     private const string uiSpinIconName = "ui_spin_icon";
     public Image uiSpinBase;
     public Image uiSpinIndicator;
-    public UISpinController[] uiSpinControllers; 
-    // Start is called before the first frame update
+    public UISpinController[] uiSpinControllers;
+    public float spinDuration = 3f; // Spin süresi
+    public int minSpins = 3; // Minimum tur sayýsý
+    public int maxSpins = 5; // Maksimum tur sayýsý
+
     private void OnValidate()
     {
         if (uiSpinBase == null || uiSpinIndicator == null)
         {
             Transform[] spinTransforms = GetComponentsInChildren<Transform>(true);
-            Debug.Log(spinTransforms.Length);
             foreach (Transform spin in spinTransforms)
             {
                 if (uiSpinBase == null)
@@ -59,14 +62,41 @@ public class UISpinManager : MonoBehaviour
         }
 
     }
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+    // Çarký döndürme fonksiyonu
+    public void SpinWheel()
+    {
+        if (uiSpinBase != null)
+        {
+            // Rastgele bir dilim seç
+            int randomSlice = Random.Range(0, 8);
+            // Bu dilimin ortasýnda duracak þekilde dereceyi hesapla
+            float targetRotation = 360f * Random.Range(minSpins, maxSpins + 1) + (randomSlice * 45);
+
+            // Döndürme süresi içinde çarký döndür
+            uiSpinBase.transform.DORotate(new Vector3(0, 0, -targetRotation), spinDuration, RotateMode.FastBeyond360)
+                .SetEase(Ease.InOutQuart)
+                .OnComplete(OnSpinComplete); // Döndürme tamamlandýðýnda çaðrýlacak fonksiyon
+        }
+    }
+
+    // Çark döndüðünde çaðrýlacak fonksiyon
+    private void OnSpinComplete()
+    {
+        Debug.Log("Spin complete!");
+        // Buraya çark döndükten sonra yapýlacak iþlemleri ekleyin
+    }
+
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            SpinWheel();
+        }
     }
 }
