@@ -11,8 +11,11 @@ public enum WheelBaseSpritesOption
 public class WheelBaseSpritesOptions : ScriptableObject
 {
     public Sprite bronzeSprite;
+    public Sprite bronzeIndicator;
     public Sprite silverSprite;
+    public Sprite silverIndicator;
     public Sprite goldSprite;
+    public Sprite goldIndicator;
 
     public Sprite GetSprite(WheelBaseSpritesOption option)
     {
@@ -24,6 +27,20 @@ public class WheelBaseSpritesOptions : ScriptableObject
                 return silverSprite;
             case WheelBaseSpritesOption.Gold:
                 return goldSprite;
+            default:
+                return null;
+        }
+    }
+    public Sprite GetSpriteIndicator(WheelBaseSpritesOption option)
+    {
+        switch (option)
+        {
+            case WheelBaseSpritesOption.Bronze:
+                return bronzeIndicator;
+            case WheelBaseSpritesOption.Silver:
+                return silverIndicator;
+            case WheelBaseSpritesOption.Gold:
+                return goldIndicator;
             default:
                 return null;
         }

@@ -6,7 +6,6 @@ public class WheelConfig : ScriptableObject
     public string wheelName; // Çarkýn adý
     public WheelBaseSpritesOptions baseSpriteOptions; // Seçenekleri içeren ScriptableObject
     public WheelBaseSpritesOption selectedBaseSpriteOption; // Kullanýcýnýn seçimi
-    public Sprite indicatorSprite; // Çarkýn göstergesi
 
     [Range(8, 8)]
     public int sliceCount = 8; // Slice sayýsý (8'e sabitlenmiþ)
@@ -14,6 +13,7 @@ public class WheelConfig : ScriptableObject
     public WheelSlice[] slices = new WheelSlice[8]; // 8 dilimi tutan dizi
 
     public Sprite selectedSprite;
+    public Sprite indicatorSprite; // Çarkýn göstergesi
 
     private void OnValidate()
     {
@@ -26,6 +26,7 @@ public class WheelConfig : ScriptableObject
         if (baseSpriteOptions != null)
         {
             selectedSprite = baseSpriteOptions.GetSprite(selectedBaseSpriteOption);
+            indicatorSprite = baseSpriteOptions.GetSpriteIndicator(selectedBaseSpriteOption);
             // Seçilen sprite ile yapýlacak iþlemler burada olabilir
         }
        
