@@ -14,10 +14,25 @@ namespace TemplateFx
 
         public EventManager eventManager;
         public Datas datas;
+
+
+        private void OnValidate()
+        {
+            if (eventManager == null)
+            {
+                eventManager = gameObject.GetComponent<EventManager>();
+               
+            }
+
+            if(datas == null)
+            {
+                datas = gameObject.GetComponent<Datas>();
+            }
+
+        }
         private void Awake()
         {
-            eventManager = gameObject.AddComponent<EventManager>();
-            datas = gameObject.AddComponent<Datas>();
+          
         }
 
         private void OnEnable()

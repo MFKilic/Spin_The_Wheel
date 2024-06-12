@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Config;
 
 namespace TemplateFx
 {
@@ -9,11 +9,11 @@ namespace TemplateFx
     {
         private const string levelString = "Level";
 
+        public LevelConfig config;
+        
         public int level;
-
-
        
-
+        
         private void OnEnable()
         {
             GameState.Instance.OnPrepareNewGameEvent += OnPrepareNewGameEvent;
@@ -25,28 +25,36 @@ namespace TemplateFx
             GameState.Instance.OnPrepareNewGameEvent -= OnPrepareNewGameEvent;
             GameState.Instance.OnFinishGameEvent -= OnFinishGameEvent;
         }
+
         private void Awake()
         {
-            level = PlayerPrefs.GetInt(levelString);
+            level = PlayerPrefs.GetInt(levelString, 1);
+
         }
+
+        private void OnValidate()
+        {
+
+        }
+
         private void OnPrepareNewGameEvent()
         {
-            level = PlayerPrefs.GetInt(levelString);
+            level = PlayerPrefs.GetInt(levelString, 1);
         }
 
         private void OnFinishGameEvent(LevelFinishStatus levelFinishStatus)
         {
-            if(levelFinishStatus == LevelFinishStatus.WIN)
+            if (levelFinishStatus == LevelFinishStatus.WIN)
             {
                 PlayerPrefs.SetInt(levelString, level + 1);
-                level = PlayerPrefs.GetInt(levelString);
+                level = PlayerPrefs.GetInt(levelString, 1);
             }
             else
             {
                 ///
             }
         }
-        
+
+
     }
 }
-

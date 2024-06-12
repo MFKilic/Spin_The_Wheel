@@ -15,7 +15,6 @@ MonoBehaviour:
   wheelName: Level1
   baseSpriteOptions: {fileID: 11400000, guid: 10a77e27c6aeede4dae3aa8d1b401638, type: 2}
   selectedBaseSpriteOption: 0
-  sliceCount: 8
   slices:
   - sliceName: Renders Tier3 Sniper
     sliceSprite: {fileID: 21300000, guid: c7ab8c410c12b814b9ce47eedd0c5f81, type: 3}
@@ -48,6 +47,9 @@ MonoBehaviour:
   - sliceName: death
     sliceSprite: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
     rewardAmount: 0
-    isBomb: 0
+    isBomb: 1
   selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
   indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

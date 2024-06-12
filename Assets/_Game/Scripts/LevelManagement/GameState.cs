@@ -131,14 +131,7 @@ namespace TemplateFx
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.W))
-            {
-                OnFinishGame(LevelFinishStatus.WIN);
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                OnFinishGame(LevelFinishStatus.LOSE);
-            }
+           
 
             if (firstInput)
             {
@@ -150,7 +143,7 @@ namespace TemplateFx
                 if(!firstInput)
                 {
                     LevelManager.Instance.eventManager.OnFirstInputIsPressed();
-                    OnPlayingNewGame();
+                 
                     firstInput = true;
                 }
                

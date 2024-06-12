@@ -8,18 +8,23 @@ public class WheelConfig : ScriptableObject
     public WheelBaseSpritesOption selectedBaseSpriteOption; // Kullanýcýnýn seçimi
 
     [Range(8, 8)]
-    public int sliceCount = 8; // Slice sayýsý (8'e sabitlenmiþ)
+    private int _sliceCount = 8; // Slice sayýsý (8'e sabitlenmiþ)
 
     public WheelSlice[] slices = new WheelSlice[8]; // 8 dilimi tutan dizi
 
     public Sprite selectedSprite;
     public Sprite indicatorSprite; // Çarkýn göstergesi
 
+    public int maxSpin_value;
+    public int minSpin_value;
+
+    public int spinDuration_value;
+
     private void OnValidate()
     {
-        if (slices.Length != sliceCount)
+        if (slices.Length != _sliceCount)
         {
-            System.Array.Resize(ref slices, sliceCount);
+            System.Array.Resize(ref slices, _sliceCount);
         }
 
         // Seçilen sprite'ý al
