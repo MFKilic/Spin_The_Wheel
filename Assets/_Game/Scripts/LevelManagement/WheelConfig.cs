@@ -1,27 +1,36 @@
+using System;
+using TemplateFx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWheelConfig", menuName = "Game/WheelConfig")]
 public class WheelConfig : ScriptableObject
 {
-    public string wheelName; // Çarkýn adý
+    public event Action<int> OnConfigChanged;
+    public int wheelLevel; // Çarkýn adý
     public WheelBaseSpritesOptions baseSpriteOptions; // Seçenekleri içeren ScriptableObject
     public WheelBaseSpritesOption selectedBaseSpriteOption; // Kullanýcýnýn seçimi
 
     [Range(8, 8)]
     private int _sliceCount = 8; // Slice sayýsý (8'e sabitlenmiþ)
 
-    public WheelSlice[] slices = new WheelSlice[8]; // 8 dilimi tutan dizi
+     public WheelSlice[] slices = new WheelSlice[8]; // 8 dilimi tutan dizi
 
-    public Sprite selectedSprite;
-    public Sprite indicatorSprite; // Çarkýn göstergesi
+    [HideInInspector] public Sprite selectedSprite;
+    [HideInInspector] public Sprite indicatorSprite; // Çarkýn göstergesi
 
     public int maxSpin_value;
     public int minSpin_value;
 
     public int spinDuration_value;
 
+    public UISpinManager spinManager;
+
     private void OnValidate()
     {
+        if (spinManager == null)
+        {
+            spinManager = FindObjectOfType<UISpinManager>();
+        }
         if (slices.Length != _sliceCount)
         {
             System.Array.Resize(ref slices, _sliceCount);
@@ -76,6 +85,8 @@ public class WheelConfig : ScriptableObject
                 }
             }
         }
+
+       
     }
 }
 

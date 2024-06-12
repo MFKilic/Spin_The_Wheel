@@ -7,7 +7,7 @@ namespace TemplateFx
 {
     public class Datas : MonoBehaviour
     {
-        private const string levelString = "Level";
+     
 
         public LevelConfig config;
         
@@ -18,36 +18,53 @@ namespace TemplateFx
         {
             GameState.Instance.OnPrepareNewGameEvent += OnPrepareNewGameEvent;
             GameState.Instance.OnFinishGameEvent += OnFinishGameEvent;
+            LevelManager.Instance.eventManager.OnSpinIsSuccesfulEvent += EventManager_OnSpinIsSuccesfulEvent;
+        }
+
+        private void EventManager_OnSpinIsSuccesfulEvent(bool isYes)
+        {
+            if (isYes)
+            {
+
+            }
+            else
+            {
+
+            }
         }
 
         private void OnDisable()
         {
             GameState.Instance.OnPrepareNewGameEvent -= OnPrepareNewGameEvent;
             GameState.Instance.OnFinishGameEvent -= OnFinishGameEvent;
+            LevelManager.Instance.eventManager.OnSpinIsSuccesfulEvent -= EventManager_OnSpinIsSuccesfulEvent;
         }
 
         private void Awake()
         {
-            level = PlayerPrefs.GetInt(levelString, 1);
+            level = 1;
 
         }
 
         private void OnValidate()
         {
-
+            if (config == null)
+            {
+                config = Resources.Load<LevelConfig>("NewLevelConfig");
+            }
+            
         }
 
         private void OnPrepareNewGameEvent()
         {
-            level = PlayerPrefs.GetInt(levelString, 1);
+            level = 1;
         }
 
         private void OnFinishGameEvent(LevelFinishStatus levelFinishStatus)
         {
             if (levelFinishStatus == LevelFinishStatus.WIN)
             {
-                PlayerPrefs.SetInt(levelString, level + 1);
-                level = PlayerPrefs.GetInt(levelString, 1);
+               
             }
             else
             {
