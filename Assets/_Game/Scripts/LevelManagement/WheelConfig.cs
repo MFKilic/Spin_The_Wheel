@@ -5,10 +5,10 @@ using UnityEngine;
 public class WheelConfig : ScriptableObject
 {
     private int _wheelLevel;
-    private WheelBaseSpritesOptions _baseSpriteOptions; 
+    [SerializeField] private WheelBaseSpritesOptions _baseSpriteOptions; 
     public WheelBaseSpritesOption selectedBaseSpriteOption_value;
     public bool randomizeWheel;
-    private WheelPrizeSpritesData _prizeSpritesData;
+    [SerializeField] private WheelPrizeSpritesData _prizeSpritesData;
 
     [Range(8, 8)]
     private int _sliceCount = 8; 

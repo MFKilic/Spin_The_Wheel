@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.IO;
-
+#if UNITY_EDITOR
 public class WheelConfigAssetPostprocessor : AssetPostprocessor
 {
     private const string targetFolderPath = "Assets/_Game/ScriptableObjects/Levels";
@@ -43,3 +43,4 @@ public class WheelConfigAssetPostprocessor : AssetPostprocessor
         }
     }
 }
+#endif

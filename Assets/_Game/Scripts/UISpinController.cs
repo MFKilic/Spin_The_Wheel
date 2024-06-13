@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,8 @@ public class UISpinController : MonoBehaviour
     private const string uiSpinIconMask = "ui_spin_icon_image_mask";
     private const string uiSpinIcon = "ui_spin_icon_image";
     private const string uiSpinText = "ui_spin_icon_text";
-    public Image spinPartImage;
-    public TextMeshProUGUI spinPartText;
+    [SerializeField] private Image spinPartImage;
+    [SerializeField] private TextMeshProUGUI spinPartText;
 
 
     private void OnValidate()
@@ -44,6 +45,30 @@ public class UISpinController : MonoBehaviour
                 }
 
             }
+        }
+    }
+
+    public Image GetImage()
+    {
+        return spinPartImage;
+    }
+
+    public TextMeshProUGUI GetText()
+    {
+        return spinPartText;
+    }
+
+    public int GetNumber()
+    {
+        int number;
+        if (int.TryParse(spinPartText.text, out number))
+        {
+            return number;
+        }
+        else
+        {
+            Debug.Log("Text is not a valid number");
+            return 0; 
         }
     }
    

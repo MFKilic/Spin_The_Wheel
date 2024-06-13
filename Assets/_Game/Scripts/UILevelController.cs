@@ -7,7 +7,7 @@ using TemplateFx;
 
 public class UILevelController : MonoBehaviour
 {
-    private List<TextMeshProUGUI> _levelTexts = new List<TextMeshProUGUI>();
+   [SerializeField]  private List<TextMeshProUGUI> _levelTexts = new List<TextMeshProUGUI>();
     private int level = 1;
     private int singlePlusCount = -40;
     private int changePlusCount = -45;

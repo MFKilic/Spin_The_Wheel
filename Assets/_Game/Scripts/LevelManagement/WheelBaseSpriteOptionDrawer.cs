@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(WheelBaseSpritesOption))]
 public class WheelBaseSpriteOptionDrawer : PropertyDrawer
 {
@@ -15,3 +15,4 @@ public class WheelBaseSpriteOptionDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif
