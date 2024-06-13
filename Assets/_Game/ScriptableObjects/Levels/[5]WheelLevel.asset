@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
+  m_Name: '[5]WheelLevel'
+  m_EditorClassIdentifier: 
+  selectedBaseSpriteOption_value: 1
+  randomizeWheel: 0
+  slices:
+  - sliceName: Shotgun Points
+    sliceSprite_value: {fileID: 21300000, guid: 98ed0037b153ed847b0bc3370c444cba, type: 3}
+    rewardAmount_value: 91
+    isBomb_value: 0
+  - sliceName: Shotgun Points
+    sliceSprite_value: {fileID: 21300000, guid: 98ed0037b153ed847b0bc3370c444cba, type: 3}
+    rewardAmount_value: 36
+    isBomb_value: 0
+  - sliceName: Vest Points
+    sliceSprite_value: {fileID: 21300000, guid: e8fbde9fdb5806e4d9badae8bb95ab20, type: 3}
+    rewardAmount_value: 22
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 02f0052da8b17c1498365116068508bc, type: 3}
+    rewardAmount_value: 43
+    isBomb_value: 0
+  - sliceName: Renders Tier2 Mle
+    sliceSprite_value: {fileID: 21300000, guid: 875b3f60f859383459bca9458639438d, type: 3}
+    rewardAmount_value: 1
+    isBomb_value: 0
+  - sliceName: gold
+    sliceSprite_value: {fileID: 21300000, guid: 385b672e04a50e4489091d9246c68484, type: 3}
+    rewardAmount_value: 56
+    isBomb_value: 0
+  - sliceName: easter
+    sliceSprite_value: {fileID: 21300000, guid: 1584e657ec24cf74f84541afae0c8834, type: 3}
+    rewardAmount_value: 17
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
+    rewardAmount_value: 60
+    isBomb_value: 0
+  selectedSprite: {fileID: 21300000, guid: 053a9d7425a077947b9cead4c158eda7, type: 3}
+  indicatorSprite: {fileID: 21300000, guid: 85b714a3e8277e3418b19433b8b5d43a, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

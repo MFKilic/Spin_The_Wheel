@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
+  m_Name: '[13]WheelLevel'
+  m_EditorClassIdentifier: 
+  selectedBaseSpriteOption_value: 0
+  randomizeWheel: 0
+  slices:
+  - sliceName: Vest Points
+    sliceSprite_value: {fileID: 21300000, guid: e8fbde9fdb5806e4d9badae8bb95ab20, type: 3}
+    rewardAmount_value: 44
+    isBomb_value: 0
+  - sliceName: death
+    sliceSprite_value: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
+    rewardAmount_value: 0
+    isBomb_value: 1
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
+    rewardAmount_value: 50
+    isBomb_value: 0
+  - sliceName: Renders Tier2 Mle
+    sliceSprite_value: {fileID: 21300000, guid: 875b3f60f859383459bca9458639438d, type: 3}
+    rewardAmount_value: 84
+    isBomb_value: 0
+  - sliceName: Pistol Points
+    sliceSprite_value: {fileID: 21300000, guid: d2f0832604ded8142830fd717505f472, type: 3}
+    rewardAmount_value: 2
+    isBomb_value: 0
+  - sliceName: molotov
+    sliceSprite_value: {fileID: 21300000, guid: 272bf157c5b63fc429841f58791bac4f, type: 3}
+    rewardAmount_value: 40
+    isBomb_value: 0
+  - sliceName: time
+    sliceSprite_value: {fileID: 21300000, guid: f183278516228cc45befe44a15364b02, type: 3}
+    rewardAmount_value: 60
+    isBomb_value: 0
+  - sliceName: Renders Tier2 Rifle
+    sliceSprite_value: {fileID: 21300000, guid: 4998dafc387133343a48dedc38c05ccf, type: 3}
+    rewardAmount_value: 18
+    isBomb_value: 0
+  selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
+  indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

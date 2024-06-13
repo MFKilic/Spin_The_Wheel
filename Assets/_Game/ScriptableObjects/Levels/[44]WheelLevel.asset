@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
+  m_Name: '[44]WheelLevel'
+  m_EditorClassIdentifier: 
+  selectedBaseSpriteOption_value: 0
+  randomizeWheel: 0
+  slices:
+  - sliceName: death
+    sliceSprite_value: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
+    rewardAmount_value: 0
+    isBomb_value: 1
+  - sliceName: Pistol Points
+    sliceSprite_value: {fileID: 21300000, guid: eb22d013c1c984142aa7587162fde912, type: 3}
+    rewardAmount_value: 94
+    isBomb_value: 0
+  - sliceName: Shotgun Points
+    sliceSprite_value: {fileID: 21300000, guid: 98ed0037b153ed847b0bc3370c444cba, type: 3}
+    rewardAmount_value: 49
+    isBomb_value: 0
+  - sliceName: time
+    sliceSprite_value: {fileID: 21300000, guid: f183278516228cc45befe44a15364b02, type: 3}
+    rewardAmount_value: 53
+    isBomb_value: 0
+  - sliceName: Knife Points
+    sliceSprite_value: {fileID: 21300000, guid: 8b5596e2533dc1841b2ce159777a8989, type: 3}
+    rewardAmount_value: 97
+    isBomb_value: 0
+  - sliceName: Renders Tier1 Shotgun
+    sliceSprite_value: {fileID: 21300000, guid: 0e1cc950284a71b47b102d4f5cb3050c, type: 3}
+    rewardAmount_value: 4
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 504c9a420bd44f144815bab234f4a013, type: 3}
+    rewardAmount_value: 89
+    isBomb_value: 0
+  - sliceName: m67
+    sliceSprite_value: {fileID: 21300000, guid: af1e5ba8392a62b47806c2cafa355d3c, type: 3}
+    rewardAmount_value: 77
+    isBomb_value: 0
+  selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
+  indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

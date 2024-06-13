@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
+  m_Name: '[59]WheelLevel'
+  m_EditorClassIdentifier: 
+  selectedBaseSpriteOption_value: 0
+  randomizeWheel: 0
+  slices:
+  - sliceName: m26
+    sliceSprite_value: {fileID: 21300000, guid: 275585d5554597d4fbdc0f34123dfe14, type: 3}
+    rewardAmount_value: 83
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
+    rewardAmount_value: 10
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 02f0052da8b17c1498365116068508bc, type: 3}
+    rewardAmount_value: 63
+    isBomb_value: 0
+  - sliceName: death
+    sliceSprite_value: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
+    rewardAmount_value: 0
+    isBomb_value: 1
+  - sliceName: easter
+    sliceSprite_value: {fileID: 21300000, guid: faaf6a37593340f4ea0e98f72fe87583, type: 3}
+    rewardAmount_value: 82
+    isBomb_value: 0
+  - sliceName: neurostim
+    sliceSprite_value: {fileID: 21300000, guid: 2475e1ca389ee9a4f8618b5d2085aea7, type: 3}
+    rewardAmount_value: 43
+    isBomb_value: 0
+  - sliceName: Pistol Points
+    sliceSprite_value: {fileID: 21300000, guid: eb22d013c1c984142aa7587162fde912, type: 3}
+    rewardAmount_value: 58
+    isBomb_value: 0
+  - sliceName: Knife Points
+    sliceSprite_value: {fileID: 21300000, guid: 8b5596e2533dc1841b2ce159777a8989, type: 3}
+    rewardAmount_value: 80
+    isBomb_value: 0
+  selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
+  indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

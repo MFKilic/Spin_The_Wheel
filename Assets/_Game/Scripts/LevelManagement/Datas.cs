@@ -26,6 +26,9 @@ namespace TemplateFx
             if (isYes)
             {
 
+                LevelManager.Instance.eventManager.OnNewSpinPrepare();
+                level++;
+                
             }
             else
             {

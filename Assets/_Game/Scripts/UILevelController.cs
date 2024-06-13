@@ -43,6 +43,20 @@ public class UILevelController : MonoBehaviour
             }
         }
     }
+    private void OnEnable()
+    {
+        LevelManager.Instance.eventManager.OnNewSpinPrepareEvent += EventManager_OnNewSpinPrepareEvent;
+    }
+
+    private void EventManager_OnNewSpinPrepareEvent()
+    {
+        ChangeNumberPos();
+    }
+
+    private void OnDisable()
+    {
+        LevelManager.Instance.eventManager.OnNewSpinPrepareEvent -= EventManager_OnNewSpinPrepareEvent;
+    }
 
     void Start()
     {
@@ -60,7 +74,7 @@ public class UILevelController : MonoBehaviour
 
     public void ChangeNumberPos()
     {
-
+        level = LevelManager.Instance.datas.level;
         int crossCount = singlePlusCount;
         if (level < 9)
         {
@@ -96,7 +110,7 @@ public class UILevelController : MonoBehaviour
             UIManager.Instance.viewPlay.uiCardPanelMapFrame.color = Color.white;
             _levelTexts[level].color = Color.black;
         }
-        transform.DOLocalMoveX(crossCount, 1).SetEase(Ease.OutCubic);
-        level++;
+        transform.DOLocalMoveX(crossCount, 1).SetEase(Ease.OutCubic).OnComplete(()=> LevelManager.Instance.eventManager.OnInitSpin());
+        
     }
 }

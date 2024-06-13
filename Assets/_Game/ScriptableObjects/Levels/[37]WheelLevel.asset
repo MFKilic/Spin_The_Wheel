@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
+  m_Name: '[37]WheelLevel'
+  m_EditorClassIdentifier: 
+  selectedBaseSpriteOption_value: 0
+  randomizeWheel: 0
+  slices:
+  - sliceName: Pistol Points
+    sliceSprite_value: {fileID: 21300000, guid: d2f0832604ded8142830fd717505f472, type: 3}
+    rewardAmount_value: 69
+    isBomb_value: 0
+  - sliceName: Renders Tier2 Rifle
+    sliceSprite_value: {fileID: 21300000, guid: 4998dafc387133343a48dedc38c05ccf, type: 3}
+    rewardAmount_value: 94
+    isBomb_value: 0
+  - sliceName: nolight
+    sliceSprite_value: {fileID: 21300000, guid: 504c9a420bd44f144815bab234f4a013, type: 3}
+    rewardAmount_value: 8
+    isBomb_value: 0
+  - sliceName: death
+    sliceSprite_value: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
+    rewardAmount_value: 0
+    isBomb_value: 1
+  - sliceName: Renders Tier3 Shotgun
+    sliceSprite_value: {fileID: 21300000, guid: e1aa921e1c0d52346b93d72329001820, type: 3}
+    rewardAmount_value: 66
+    isBomb_value: 0
+  - sliceName: Renders Tier3 Smg
+    sliceSprite_value: {fileID: 21300000, guid: 6c3d55b6957ce7e4695200253b09c853, type: 3}
+    rewardAmount_value: 34
+    isBomb_value: 0
+  - sliceName: m26
+    sliceSprite_value: {fileID: 21300000, guid: 275585d5554597d4fbdc0f34123dfe14, type: 3}
+    rewardAmount_value: 75
+    isBomb_value: 0
+  - sliceName: neurostim
+    sliceSprite_value: {fileID: 21300000, guid: 2475e1ca389ee9a4f8618b5d2085aea7, type: 3}
+    rewardAmount_value: 30
+    isBomb_value: 0
+  selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
+  indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
+  maxSpin_value: 3
+  minSpin_value: 2
+  spinDuration_value: 3

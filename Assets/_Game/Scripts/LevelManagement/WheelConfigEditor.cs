@@ -33,10 +33,10 @@ public class WheelConfigEditor : Editor
         {
             for (int i = 0; i < wheelConfig.slices.Length; i++)
             {
-                if (wheelConfig.slices[i].sliceSprite != null)
+                if (wheelConfig.slices[i].sliceSprite_value != null)
                 {
                     GUILayout.Label($"Slice {i + 1} Sprite Preview:");
-                    GUILayout.Label(new GUIContent(wheelConfig.slices[i].sliceSprite.texture), GUILayout.Width(spriteDisplaySize), GUILayout.Height(spriteDisplaySize));
+                    GUILayout.Label(new GUIContent(wheelConfig.slices[i].sliceSprite_value.texture), GUILayout.Width(spriteDisplaySize), GUILayout.Height(spriteDisplaySize));
                 }
             }
         }

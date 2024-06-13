@@ -27,6 +27,9 @@ namespace TemplateFx
         public delegate void OnSpinIsSuccesfulDelegate(bool isYes);
         public event OnSpinIsSuccesfulDelegate OnSpinIsSuccesfulEvent;
 
+        public delegate void OnNewSpinPrepareDelegate();
+        public event OnNewSpinPrepareDelegate OnNewSpinPrepareEvent;
+
         public void OnFirstInputIsPressed()
         {
             OnFirstInputEvent?.Invoke();
@@ -66,6 +69,12 @@ namespace TemplateFx
         {
             OnSpinIsSuccesfulEvent?.Invoke(isYes);
             Debug.Log("OnSpinIsSuccesful = " + isYes);
+        }
+
+        public void OnNewSpinPrepare()
+        {
+            OnNewSpinPrepareEvent?.Invoke();
+            Debug.Log("OnNewSpinPrepare");
         }
        
     }

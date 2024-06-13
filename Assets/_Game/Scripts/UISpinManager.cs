@@ -79,7 +79,7 @@ public class UISpinManager : MonoBehaviour
     {
         Debug.Log("Init");
         var config = _datas.config;
-        var wheelConfig = config.wheelConfigs[0];
+        var wheelConfig = config.wheelConfigs[_datas.level - 1];
         spinDuration = wheelConfig.spinDuration_value;
         minSpins = wheelConfig.minSpin_value;
         maxSpins = wheelConfig.maxSpin_value;
@@ -88,8 +88,8 @@ public class UISpinManager : MonoBehaviour
 
        for(int i  = 0; i < uiSpinControllers.Length; i++)
         {
-            uiSpinControllers[i].spinPartImage.sprite = wheelConfig.slices[i].sliceSprite;
-            uiSpinControllers[i].spinPartText.text = wheelConfig.slices[i].rewardAmount.ToString().CurencyToLadder();
+            uiSpinControllers[i].spinPartImage.sprite = wheelConfig.slices[i].sliceSprite_value;
+            uiSpinControllers[i].spinPartText.text = wheelConfig.slices[i].rewardAmount_value.ToString().CurencyToLadder();
         }
         LevelManager.Instance.eventManager.OnPreSpin();
 
