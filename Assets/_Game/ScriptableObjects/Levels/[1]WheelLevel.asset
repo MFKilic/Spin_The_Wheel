@@ -17,38 +17,62 @@ MonoBehaviour:
   randomizeWheel: 0
   _prizeSpritesData: {fileID: 11400000, guid: d6ce0f6fe95ad3a459446eb53846eb06, type: 2}
   slices:
+  - sliceName: Render T Cons Molotov
+    sliceSpriteName: ui_icon_render_t_cons_molotov
+    sliceSprite_value: {fileID: 21300000, guid: 272bf157c5b63fc429841f58791bac4f, type: 3}
+    rewardAmount_value: 72
+    isBomb_value: 0
+    spriteWith: 512
+    spriteHeight: 512
+  - sliceName: Chest Bronze Nolight
+    sliceSpriteName: UI_icon_chest_Bronze_nolight
+    sliceSprite_value: {fileID: 21300000, guid: 504c9a420bd44f144815bab234f4a013, type: 3}
+    rewardAmount_value: 94
+    isBomb_value: 0
+    spriteWith: 512
+    spriteHeight: 227
   - sliceName: Render Cons Grenade M26
+    sliceSpriteName: ui_icon_render_cons_grenade_m26
     sliceSprite_value: {fileID: 21300000, guid: 275585d5554597d4fbdc0f34123dfe14, type: 3}
-    rewardAmount_value: 38
+    rewardAmount_value: 96
     isBomb_value: 0
-  - sliceName: Chest Super Nolight
-    sliceSprite_value: {fileID: 21300000, guid: d0615fb1d2887b54daa73f2150e42ce6, type: 3}
-    rewardAmount_value: 81
+    spriteWith: 512
+    spriteHeight: 512
+  - sliceName: Chest Gold Nolight
+    sliceSpriteName: UI_icon_chest_gold_nolight
+    sliceSprite_value: {fileID: 21300000, guid: 6825d4c8a63bf8540ac1c75c560342b1, type: 3}
+    rewardAmount_value: 10
     isBomb_value: 0
+    spriteWith: 512
+    spriteHeight: 227
+  - sliceName: Chest Silver Nolight
+    sliceSpriteName: UI_icon_chest_silver_nolight
+    sliceSprite_value: {fileID: 21300000, guid: 4c6dfa95729ae4342bc205526f07de0c, type: 3}
+    rewardAmount_value: 3
+    isBomb_value: 0
+    spriteWith: 512
+    spriteHeight: 227
+  - sliceName: Submachine Points
+    sliceSpriteName: UI_Icons_Submachine_Points
+    sliceSprite_value: {fileID: 21300000, guid: 7110c1753ed249e46a0621aba59dd818, type: 3}
+    rewardAmount_value: 56
+    isBomb_value: 0
+    spriteWith: 256
+    spriteHeight: 256
+  - sliceName: Sniper Points
+    sliceSpriteName: UI_Icons_Sniper_Points
+    sliceSprite_value: {fileID: 21300000, guid: 8302c3844faede24db1a49b16317e7c2, type: 3}
+    rewardAmount_value: 16
+    isBomb_value: 0
+    spriteWith: 256
+    spriteHeight: 256
   - sliceName: Death
+    sliceSpriteName: ui_card_icon_death
     sliceSprite_value: {fileID: 21300000, guid: e85bc51f24dc7154eb40ff972a4441a5, type: 3}
     rewardAmount_value: 0
     isBomb_value: 1
-  - sliceName: Chest Standart Nolight
-    sliceSprite_value: {fileID: 21300000, guid: 02f0052da8b17c1498365116068508bc, type: 3}
-    rewardAmount_value: 8
-    isBomb_value: 0
-  - sliceName: Mle Bayonet Summer Vice
-    sliceSprite_value: {fileID: 21300000, guid: 78379e7ef93c098429f751094fa0a04d, type: 3}
-    rewardAmount_value: 40
-    isBomb_value: 0
-  - sliceName: SMG Points
-    sliceSprite_value: {fileID: 21300000, guid: 2e5bedee8e6520f4e9d56e567e527bb9, type: 3}
-    rewardAmount_value: 41
-    isBomb_value: 0
-  - sliceName: Chest Small Noligt
-    sliceSprite_value: {fileID: 21300000, guid: 0de95b2cdb69e204d815953017a6268a, type: 3}
-    rewardAmount_value: 62
-    isBomb_value: 0
-  - sliceName: Aviator Glasses Easter
-    sliceSprite_value: {fileID: 21300000, guid: faaf6a37593340f4ea0e98f72fe87583, type: 3}
-    rewardAmount_value: 11
-    isBomb_value: 0
+    spriteWith: 512
+    spriteHeight: 512
   selectedSprite: {fileID: 21300000, guid: cfbeaaf456102b3449fe4d72ebe710ab, type: 3}
   indicatorSprite: {fileID: 21300000, guid: 4e64c4c03a2919e4dbf061713d4ac9be, type: 3}
   maxSpin_value: 3
