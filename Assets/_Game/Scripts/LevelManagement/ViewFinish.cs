@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -12,8 +13,10 @@ namespace TemplateFx
     {
         [SerializeField] private GameObject _winPanelObject;
         [SerializeField] private GameObject _losePanelObject;
+        [SerializeField] private UIFinishCardManager _cardManager;
         private const string uiWinStr = "ui_win";
         private const string uiLoseStr = "ui_lose";
+        private const string uiCardManagerStr = "ui_win_horizontal_layout";
 
         private void OnValidate()
         {
@@ -42,6 +45,20 @@ namespace TemplateFx
 
                 }
             }
+            if(_cardManager == null && _winPanelObject != null)
+            {
+                Transform[] childTranforms = _winPanelObject.GetComponentsInChildren<Transform>(true);
+                foreach (Transform child in childTranforms)
+                {
+                    if(_cardManager == null)
+                    {
+                        if(child.name == uiCardManagerStr)
+                        {
+                            _cardManager = child.GetComponent<UIFinishCardManager>();
+                        }
+                    }
+                }
+            }
         }
 
         public void ManuelStart()
@@ -52,6 +69,7 @@ namespace TemplateFx
                 _losePanelObject.SetActive(false);
                 _winPanelObject.transform.localScale = new Vector3(1, 0, 1);
                 _winPanelObject.transform.DOScaleY(1, 0.4f);
+                _cardManager.CreateCards();
             }
             else
             {

@@ -7,7 +7,7 @@ namespace TemplateFx
 {
     public class Datas : MonoBehaviour
     {
-     
+        private List<UIPrizeController> prizeControllerList = new List<UIPrizeController>();
 
         public LevelConfig config;
         
@@ -63,6 +63,16 @@ namespace TemplateFx
         public void SetLevel(int number)
         {
             level = number;
+        }
+
+        public void CopyPrizeList(List<UIPrizeController> uIPrizeControllers)
+        {
+            prizeControllerList = uIPrizeControllers;
+        }
+
+        public List<UIPrizeController> GetPrizeList()
+        {
+            return prizeControllerList;
         }
 
         private void OnFinishGameEvent(LevelFinishStatus levelFinishStatus)

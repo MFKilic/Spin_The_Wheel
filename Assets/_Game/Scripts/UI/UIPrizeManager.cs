@@ -19,6 +19,7 @@ public class UIPrizeManager : MonoBehaviour
     private Image choosenImage = null;
     private int choosenNumber = 0;
     private float startYPos = 0;
+    private string choosenName = string.Empty;
 
     private void OnValidate()
     {
@@ -63,7 +64,7 @@ public class UIPrizeManager : MonoBehaviour
         {
             controller.SetImageSprite(null);
             controller.SetText(0);
-
+            LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
         }
     }
 
@@ -75,16 +76,18 @@ public class UIPrizeManager : MonoBehaviour
 
 
 
-    public Transform CheckListImage(Image image, int index)
+    public Transform CheckListImage(Image image, int index, string str)
     {
         bool isImageAddedList = false;
         choosenImage = null;
         choosenNumber = 0;
+        choosenName = string.Empty;
         
         foreach (UIPrizeController controller in uiPrizeControllers)
         {
             if (controller.GetImage().sprite == image.sprite)
             {
+                choosenName = str;
                 choosenNumber = index;     
                 choosenController = controller;
                 isImageAddedList = true;
@@ -92,13 +95,14 @@ public class UIPrizeManager : MonoBehaviour
             }
             else if (controller.GetImage().sprite == null)
             {
+                choosenName = str;
                 choosenImage = image;
                 choosenNumber = index;
                 choosenController = controller;
                 isImageAddedList = true;
                 break;
             }
-            // if(controller.GetImage().sprite)
+         
         }
 
         if (!isImageAddedList)
@@ -110,12 +114,15 @@ public class UIPrizeManager : MonoBehaviour
             {
                 choosenImage = image;
                 choosenNumber = index;
+                choosenName = str;
                 choosenController = controller;
                 uiPrizeControllers.Add(controller);
             }
         }
 
         Debug.Log(choosenController.transform.position + "ChoosenPos");
+
+        LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
 
         return choosenController.transform;
     }
@@ -129,6 +136,7 @@ public class UIPrizeManager : MonoBehaviour
 
         if(choosenNumber != 0)
         {
+            choosenController.SetPrizeName(choosenName);
             choosenController.SetText(choosenNumber);
         }
     }

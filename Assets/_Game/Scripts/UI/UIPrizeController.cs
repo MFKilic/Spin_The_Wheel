@@ -10,6 +10,7 @@ public class UIPrizeController : MonoBehaviour
     
     [SerializeField] private Image prizeImage;
     [SerializeField] private TextMeshProUGUI prizeText;
+    private string prizeName;
     private int textIndex = 0;
     private const string uiCardItemImageStr = "ui_card_panel_prize_image";
     private const string uiCardItemTextStr = "ui_card_panel_prize_image_text";
@@ -75,6 +76,16 @@ public class UIPrizeController : MonoBehaviour
 
         prizeImage.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.InOutBounce);
 
+    }
+
+    public void SetPrizeName(string str)
+    {
+        prizeName = str;
+    }
+
+    public string GetName()
+    {
+        return prizeName;
     }
 
     public Image GetImage()

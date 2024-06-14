@@ -133,7 +133,7 @@ public class UICardInfoController : MonoBehaviour
         transform.position = startPos;
         if(!isBomb)
         {
-            posTr = UIManager.Instance.viewPlay.prizeManager.CheckListImage(cardInfoImage, GetNumber());
+            posTr = UIManager.Instance.viewPlay.prizeManager.CheckListImage(cardInfoImage, GetNumber(), GetName());
         }
        
         transform.localScale = new Vector3(0, 1, 1);
@@ -152,6 +152,11 @@ public class UICardInfoController : MonoBehaviour
             Debug.LogError("Text is not a valid number");
             return 0;
         }
+    }
+
+    private string GetName()
+    {
+        return cardInfoNameText.text;
     }
     private void GoToLogPosition()
     {   
