@@ -12,40 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
   m_Name: '[50]WheelLevel'
   m_EditorClassIdentifier: 
+  _baseSpriteOptions: {fileID: 11400000, guid: 10a77e27c6aeede4dae3aa8d1b401638, type: 2}
   selectedBaseSpriteOption_value: 1
   randomizeWheel: 0
+  _prizeSpritesData: {fileID: 11400000, guid: d6ce0f6fe95ad3a459446eb53846eb06, type: 2}
   slices:
-  - sliceName: nolight
-    sliceSprite_value: {fileID: 21300000, guid: 4c6dfa95729ae4342bc205526f07de0c, type: 3}
-    rewardAmount_value: 28
-    isBomb_value: 0
-  - sliceName: nolight
-    sliceSprite_value: {fileID: 21300000, guid: 02f0052da8b17c1498365116068508bc, type: 3}
-    rewardAmount_value: 65
-    isBomb_value: 0
-  - sliceName: nolight
-    sliceSprite_value: {fileID: 21300000, guid: 504c9a420bd44f144815bab234f4a013, type: 3}
-    rewardAmount_value: 57
-    isBomb_value: 0
-  - sliceName: m67
-    sliceSprite_value: {fileID: 21300000, guid: af1e5ba8392a62b47806c2cafa355d3c, type: 3}
-    rewardAmount_value: 38
-    isBomb_value: 0
   - sliceName: Renders Tier3 Shotgun
     sliceSprite_value: {fileID: 21300000, guid: e1aa921e1c0d52346b93d72329001820, type: 3}
-    rewardAmount_value: 65
+    rewardAmount_value: 72
     isBomb_value: 0
-  - sliceName: easter
-    sliceSprite_value: {fileID: 21300000, guid: 1584e657ec24cf74f84541afae0c8834, type: 3}
-    rewardAmount_value: 7
+  - sliceName: SMG Points
+    sliceSprite_value: {fileID: 21300000, guid: 2e5bedee8e6520f4e9d56e567e527bb9, type: 3}
+    rewardAmount_value: 20
     isBomb_value: 0
-  - sliceName: Renders Tier2 Rifle
-    sliceSprite_value: {fileID: 21300000, guid: 4998dafc387133343a48dedc38c05ccf, type: 3}
-    rewardAmount_value: 52
+  - sliceName: Armor Points
+    sliceSprite_value: {fileID: 21300000, guid: c9ed25d37e48a2548b78d603479b9f88, type: 3}
+    rewardAmount_value: 128
     isBomb_value: 0
-  - sliceName: Rifle Points
-    sliceSprite_value: {fileID: 21300000, guid: 1f17d498ac5af8745b3a8163bf665065, type: 3}
-    rewardAmount_value: 79
+  - sliceName: Mle Bayonet Easter Time
+    sliceSprite_value: {fileID: 21300000, guid: f183278516228cc45befe44a15364b02, type: 3}
+    rewardAmount_value: 4
+    isBomb_value: 0
+  - sliceName: Render Cons Healthshot 2 Regenerator
+    sliceSprite_value: {fileID: 21300000, guid: 10c86b4921fc26f4cad8460fa7e18a6f, type: 3}
+    rewardAmount_value: 118
+    isBomb_value: 0
+  - sliceName: Render Cons Healthshot 2 Regenerator
+    sliceSprite_value: {fileID: 21300000, guid: 10c86b4921fc26f4cad8460fa7e18a6f, type: 3}
+    rewardAmount_value: 84
+    isBomb_value: 0
+  - sliceName: Renders Tier2 Mle
+    sliceSprite_value: {fileID: 21300000, guid: 875b3f60f859383459bca9458639438d, type: 3}
+    rewardAmount_value: 12
+    isBomb_value: 0
+  - sliceName: Chest Super Nolight
+    sliceSprite_value: {fileID: 21300000, guid: d0615fb1d2887b54daa73f2150e42ce6, type: 3}
+    rewardAmount_value: 2
     isBomb_value: 0
   selectedSprite: {fileID: 21300000, guid: 053a9d7425a077947b9cead4c158eda7, type: 3}
   indicatorSprite: {fileID: 21300000, guid: 85b714a3e8277e3418b19433b8b5d43a, type: 3}

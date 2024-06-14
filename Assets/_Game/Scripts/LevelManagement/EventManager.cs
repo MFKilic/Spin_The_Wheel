@@ -30,6 +30,17 @@ namespace TemplateFx
         public delegate void OnNewSpinPrepareDelegate();
         public event OnNewSpinPrepareDelegate OnNewSpinPrepareEvent;
 
+        public delegate void OnContinueButtonPressedDelegate();
+        public event OnContinueButtonPressedDelegate OnContinueButtonPressedEvent;
+
+        public delegate void OnGiveUpButtonPressedDelegate();
+        public event OnGiveUpButtonPressedDelegate OnGiveUpButtonPressedEvent;
+
+        public delegate void OnBombIsExplosedDelegate();
+        public event OnBombIsExplosedDelegate OnBombIsExplosedEvent;
+
+        
+
         public void OnFirstInputIsPressed()
         {
             OnFirstInputEvent?.Invoke();
@@ -59,16 +70,17 @@ namespace TemplateFx
             Debug.Log("OnFinishSpin");
         }
 
-        public void OnAfterSpin()
-        {
-            OnAfterSpinEvent?.Invoke();
-            Debug.Log("OnAfterSpin");
-        }
-
+      
         public void OnSpinIsSuccesful(bool isYes)
         {
             OnSpinIsSuccesfulEvent?.Invoke(isYes);
             Debug.Log("OnSpinIsSuccesful = " + isYes);
+        }
+
+        public void OnAfterSpin()
+        {
+            OnAfterSpinEvent?.Invoke();
+            Debug.Log("OnAfterSpin");
         }
 
         public void OnNewSpinPrepare()
@@ -76,7 +88,23 @@ namespace TemplateFx
             OnNewSpinPrepareEvent?.Invoke();
             Debug.Log("OnNewSpinPrepare");
         }
-       
+
+        public void OnContinueButtonPressed()
+        {
+            OnContinueButtonPressedEvent?.Invoke();
+        }
+
+        public void OnGiveUpButtonPressed()
+        {
+            OnGiveUpButtonPressedEvent?.Invoke();
+        }
+
+        public void OnBombIsExplosed()
+        {
+            OnBombIsExplosedEvent?.Invoke();
+        }
+
+
     }
 }
 

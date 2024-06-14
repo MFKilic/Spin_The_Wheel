@@ -12,6 +12,7 @@ public class UISpinController : MonoBehaviour
     private const string uiSpinText = "ui_spin_icon_text";
     [SerializeField] private Image spinPartImage;
     [SerializeField] private TextMeshProUGUI spinPartText;
+    private string spinPartName;
 
 
     private void OnValidate()
@@ -48,9 +49,34 @@ public class UISpinController : MonoBehaviour
         }
     }
 
+    public void SetNameString(string name)
+    {
+        spinPartName = name;
+    }
+
+    public string GetNameString()
+    {
+        return spinPartName;
+    }
+
+    public void SetImageSprite(Sprite sprite)
+    {
+        spinPartImage.sprite = sprite;
+    }
+
     public Image GetImage()
     {
         return spinPartImage;
+    }
+
+    public void SetText(string text)
+    {
+      
+        spinPartText.text = text;
+        if(GetNumber() == 0)
+        {
+            spinPartText.text = string.Empty;
+        }
     }
 
     public TextMeshProUGUI GetText()

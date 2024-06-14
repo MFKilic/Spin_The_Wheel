@@ -12,19 +12,26 @@ public class UILevelController : MonoBehaviour
     private int singlePlusCount = -40;
     private int changePlusCount = -45;
     private int doublePlusCount = -50;
+    private Vector3 startPos;
+    bool isSpin;
 
     private void OnValidate()
     {
-        // Child objeleri arayýp TextMeshProUGUI bileþenlerini bul
-        _levelTexts.Clear(); // Önceki listeyi temizle
+     
+        _levelTexts.Clear(); 
 
         TextMeshProUGUI[] tmps = GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI tmp in tmps)
         {
-            _levelTexts.Add(tmp); // Listeye ekle
+            _levelTexts.Add(tmp); 
         }
 
-        // Listeye eklenen her bir metni belirli bir formatla güncelle
+        TextColorChange();
+      
+    }
+
+    private void TextColorChange()
+    {
         for (int i = 0; i < _levelTexts.Count; i++)
         {
 
@@ -46,31 +53,44 @@ public class UILevelController : MonoBehaviour
     private void OnEnable()
     {
         LevelManager.Instance.eventManager.OnNewSpinPrepareEvent += EventManager_OnNewSpinPrepareEvent;
+        GameState.Instance.OnPrepareNewGameEvent += Instance_OnPrepareNewGameEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent += EventManager_OnBombIsExplosedEvent;
     }
 
+    private void EventManager_OnBombIsExplosedEvent()
+    {
+        transform.DOPunchPosition(Vector3.one * 15, 0.2f, 0);
+    }
+
+    private void Instance_OnPrepareNewGameEvent()
+    {
+        TextColorChange();
+        _levelTexts[0].color = Color.black;
+        _levelTexts[0].transform.DOScale(Vector3.one * 1.2f, 1);
+        transform.position = startPos;
+    }
+
+   
     private void EventManager_OnNewSpinPrepareEvent()
     {
-        ChangeNumberPos();
+
+       ChangeNumberPos();
     }
 
     private void OnDisable()
     {
         LevelManager.Instance.eventManager.OnNewSpinPrepareEvent -= EventManager_OnNewSpinPrepareEvent;
+        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
     }
 
-    void Start()
+    void Awake()
     {
-        _levelTexts[level - 1].color = Color.black;
-        _levelTexts[level - 1].transform.DOScale(Vector3.one * 1.2f, 1);
+        startPos = transform.position;
+      
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ChangeNumberPos();
-        }
-    }
+   
 
     public void ChangeNumberPos()
     {
@@ -110,7 +130,7 @@ public class UILevelController : MonoBehaviour
             UIManager.Instance.viewPlay.uiCardPanelMapFrame.color = Color.white;
             _levelTexts[level].color = Color.black;
         }
-        transform.DOLocalMoveX(crossCount, 1).SetEase(Ease.OutCubic).OnComplete(()=> LevelManager.Instance.eventManager.OnInitSpin());
+        transform.DOLocalMoveX(crossCount, 0.5f).SetEase(Ease.OutCubic).OnComplete(()=> LevelManager.Instance.eventManager.OnInitSpin());
         
     }
 }

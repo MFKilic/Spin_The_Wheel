@@ -12,40 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
   m_Name: '[15]WheelLevel'
   m_EditorClassIdentifier: 
+  _baseSpriteOptions: {fileID: 11400000, guid: 10a77e27c6aeede4dae3aa8d1b401638, type: 2}
   selectedBaseSpriteOption_value: 1
   randomizeWheel: 0
+  _prizeSpritesData: {fileID: 11400000, guid: d6ce0f6fe95ad3a459446eb53846eb06, type: 2}
   slices:
-  - sliceName: time
-    sliceSprite_value: {fileID: 21300000, guid: f183278516228cc45befe44a15364b02, type: 3}
-    rewardAmount_value: 93
-    isBomb_value: 0
-  - sliceName: cash
-    sliceSprite_value: {fileID: 21300000, guid: d635895e3506999499beb6e4f2246504, type: 3}
-    rewardAmount_value: 59
-    isBomb_value: 0
-  - sliceName: nolight
+  - sliceName: Chest Big Nolight
     sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
-    rewardAmount_value: 86
+    rewardAmount_value: 30
     isBomb_value: 0
-  - sliceName: nolight
-    sliceSprite_value: {fileID: 21300000, guid: d0615fb1d2887b54daa73f2150e42ce6, type: 3}
-    rewardAmount_value: 16
+  - sliceName: Helmet Pumpkin
+    sliceSprite_value: {fileID: 21300000, guid: 09dbee7846716384592f5127eb629f81, type: 3}
+    rewardAmount_value: 154
     isBomb_value: 0
-  - sliceName: Rifle Points
-    sliceSprite_value: {fileID: 21300000, guid: 1f17d498ac5af8745b3a8163bf665065, type: 3}
-    rewardAmount_value: 60
+  - sliceName: Cash
+    sliceSprite_value: {fileID: 21300000, guid: d635895e3506999499beb6e4f2246504, type: 3}
+    rewardAmount_value: 114
     isBomb_value: 0
-  - sliceName: Renders Tier3 Smg
-    sliceSprite_value: {fileID: 21300000, guid: 6c3d55b6957ce7e4695200253b09c853, type: 3}
-    rewardAmount_value: 27
+  - sliceName: Helmet Pumpkin
+    sliceSprite_value: {fileID: 21300000, guid: 09dbee7846716384592f5127eb629f81, type: 3}
+    rewardAmount_value: 4
     isBomb_value: 0
-  - sliceName: neurostim
-    sliceSprite_value: {fileID: 21300000, guid: 2475e1ca389ee9a4f8618b5d2085aea7, type: 3}
+  - sliceName: Render Cons Healthshot 2 Regenerator
+    sliceSprite_value: {fileID: 21300000, guid: 10c86b4921fc26f4cad8460fa7e18a6f, type: 3}
+    rewardAmount_value: 170
+    isBomb_value: 0
+  - sliceName: Aviator Glasses Easter
+    sliceSprite_value: {fileID: 21300000, guid: faaf6a37593340f4ea0e98f72fe87583, type: 3}
     rewardAmount_value: 94
     isBomb_value: 0
-  - sliceName: m26
-    sliceSprite_value: {fileID: 21300000, guid: 275585d5554597d4fbdc0f34123dfe14, type: 3}
-    rewardAmount_value: 25
+  - sliceName: SMG Points
+    sliceSprite_value: {fileID: 21300000, guid: 2e5bedee8e6520f4e9d56e567e527bb9, type: 3}
+    rewardAmount_value: 184
+    isBomb_value: 0
+  - sliceName: Chest Big Nolight
+    sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
+    rewardAmount_value: 164
     isBomb_value: 0
   selectedSprite: {fileID: 21300000, guid: 053a9d7425a077947b9cead4c158eda7, type: 3}
   indicatorSprite: {fileID: 21300000, guid: 85b714a3e8277e3418b19433b8b5d43a, type: 3}

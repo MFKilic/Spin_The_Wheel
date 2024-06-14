@@ -28,6 +28,7 @@ namespace TemplateFx
 
                 LevelManager.Instance.eventManager.OnNewSpinPrepare();
                 level++;
+                Debug.Log("Level = " + level + "ConfigLengt = " + config.wheelConfigs.Count);
                 
             }
             else

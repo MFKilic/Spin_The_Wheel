@@ -24,7 +24,7 @@ namespace TemplateFx
 
         public Image uiCardPanelMapFrame;
 
-        [SerializeField] private TextMeshProUGUI textLevel;
+       
 
        
 
@@ -143,39 +143,19 @@ namespace TemplateFx
                 }
             }
 
-            if (textLevel == null)
-            {
-        
-                Transform[] children = GetComponentsInChildren<Transform>(true);
-                foreach (Transform child in children)
-                {
-                    if(textLevel == null)
-                    {
-                        if (child.name == textLevelObjectName)
-                        {
-                            textLevel = child.GetComponent<TextMeshProUGUI>();
-                        }
-                        if(textLevel != null)
-                        {
-                            break;
-                        }
-                    }
-                  
-                }
-            }
+          
         }
         public void ViewPlayStart()
         {
             Debug.Log("PlayStart");
-            if (textLevel != null)
-                textLevel.text = "LEVEL " + LevelManager.Instance.datas.level;
+           
 
             LevelManager.Instance.eventManager.OnInitSpin();
         }
 
-        public void SetInfoCard(Sprite sprite,int number)
+        public void SetInfoCard(Sprite sprite,int number,string name)
         {
-            cardInfoController.SetInfoCard(sprite,number);
+            cardInfoController.SetInfoCard(sprite,number,name);
         }
        
     }

@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TemplateFx;
+using DG.Tweening;
 
 public class UIPrizeManager : MonoBehaviour
 {
@@ -44,7 +46,34 @@ public class UIPrizeManager : MonoBehaviour
 #endif
     }
 
-   
+    private void OnEnable()
+    {
+        GameState.Instance.OnPrepareNewGameEvent += Instance_OnPrepareNewGameEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent += EventManager_OnBombIsExplosedEvent;
+    }
+
+    private void EventManager_OnBombIsExplosedEvent()
+    {
+        transform.DOPunchPosition(Vector3.one * 6, 0.3f, 0);
+    }
+
+    private void Instance_OnPrepareNewGameEvent()
+    {
+        foreach (UIPrizeController controller in uiPrizeControllers)
+        {
+            controller.SetImageSprite(null);
+            controller.SetText(0);
+
+        }
+    }
+
+    private void OnDisable()
+    {
+        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
+    }
+
+
 
     public Transform CheckListImage(Image image, int index)
     {
@@ -56,8 +85,7 @@ public class UIPrizeManager : MonoBehaviour
         {
             if (controller.GetImage().sprite == image.sprite)
             {
-                choosenNumber = index;
-          
+                choosenNumber = index;     
                 choosenController = controller;
                 isImageAddedList = true;
                 break;
@@ -106,14 +134,11 @@ public class UIPrizeManager : MonoBehaviour
     }
 
     
-
-    // Start is called before the first frame update
     void Start()
     {
         startYPos = uiPrizeRectTransform.position.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (uiPrizeRectTransform.position.y < startYPos)

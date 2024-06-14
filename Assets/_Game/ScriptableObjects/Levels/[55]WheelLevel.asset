@@ -12,40 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49386b1f2a6a5be45a5f220670efb33e, type: 3}
   m_Name: '[55]WheelLevel'
   m_EditorClassIdentifier: 
+  _baseSpriteOptions: {fileID: 11400000, guid: 10a77e27c6aeede4dae3aa8d1b401638, type: 2}
   selectedBaseSpriteOption_value: 1
   randomizeWheel: 0
+  _prizeSpritesData: {fileID: 11400000, guid: d6ce0f6fe95ad3a459446eb53846eb06, type: 2}
   slices:
+  - sliceName: Chest Silver Nolight
+    sliceSprite_value: {fileID: 21300000, guid: 4c6dfa95729ae4342bc205526f07de0c, type: 3}
+    rewardAmount_value: 176
+    isBomb_value: 0
+  - sliceName: Pistol Points
+    sliceSprite_value: {fileID: 21300000, guid: d2f0832604ded8142830fd717505f472, type: 3}
+    rewardAmount_value: 88
+    isBomb_value: 0
+  - sliceName: Submachine Points
+    sliceSprite_value: {fileID: 21300000, guid: 7110c1753ed249e46a0621aba59dd818, type: 3}
+    rewardAmount_value: 168
+    isBomb_value: 0
+  - sliceName: Rifle Points
+    sliceSprite_value: {fileID: 21300000, guid: 1f17d498ac5af8745b3a8163bf665065, type: 3}
+    rewardAmount_value: 28
+    isBomb_value: 0
   - sliceName: Knife Points
     sliceSprite_value: {fileID: 21300000, guid: 8b5596e2533dc1841b2ce159777a8989, type: 3}
-    rewardAmount_value: 53
+    rewardAmount_value: 96
     isBomb_value: 0
-  - sliceName: m26
-    sliceSprite_value: {fileID: 21300000, guid: 275585d5554597d4fbdc0f34123dfe14, type: 3}
-    rewardAmount_value: 62
+  - sliceName: Chest Small Noligt
+    sliceSprite_value: {fileID: 21300000, guid: 0de95b2cdb69e204d815953017a6268a, type: 3}
+    rewardAmount_value: 164
     isBomb_value: 0
-  - sliceName: Armor Points
-    sliceSprite_value: {fileID: 21300000, guid: c9ed25d37e48a2548b78d603479b9f88, type: 3}
-    rewardAmount_value: 94
+  - sliceName: Chest Silver Nolight
+    sliceSprite_value: {fileID: 21300000, guid: 4c6dfa95729ae4342bc205526f07de0c, type: 3}
+    rewardAmount_value: 46
     isBomb_value: 0
-  - sliceName: easter
-    sliceSprite_value: {fileID: 21300000, guid: faaf6a37593340f4ea0e98f72fe87583, type: 3}
-    rewardAmount_value: 19
-    isBomb_value: 0
-  - sliceName: nolight
+  - sliceName: Chest Gold Nolight
     sliceSprite_value: {fileID: 21300000, guid: 6825d4c8a63bf8540ac1c75c560342b1, type: 3}
-    rewardAmount_value: 31
-    isBomb_value: 0
-  - sliceName: nolight
-    sliceSprite_value: {fileID: 21300000, guid: 031279b7f22a6694eba46e610405934a, type: 3}
-    rewardAmount_value: 32
-    isBomb_value: 0
-  - sliceName: m67
-    sliceSprite_value: {fileID: 21300000, guid: af1e5ba8392a62b47806c2cafa355d3c, type: 3}
-    rewardAmount_value: 42
-    isBomb_value: 0
-  - sliceName: pumpkin
-    sliceSprite_value: {fileID: 21300000, guid: 09dbee7846716384592f5127eb629f81, type: 3}
-    rewardAmount_value: 69
+    rewardAmount_value: 58
     isBomb_value: 0
   selectedSprite: {fileID: 21300000, guid: 053a9d7425a077947b9cead4c158eda7, type: 3}
   indicatorSprite: {fileID: 21300000, guid: 85b714a3e8277e3418b19433b8b5d43a, type: 3}

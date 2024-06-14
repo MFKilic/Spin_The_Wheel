@@ -43,7 +43,7 @@ namespace TemplateFx
         private void OnFinishGameEvent(LevelFinishStatus levelFinish)
         {
             viewInit.gameObject.SetActive(false);
-            viewPlay.gameObject.SetActive(false);
+            viewPlay.gameObject.SetActive(true);
             viewFinish.gameObject.SetActive(true);
             viewFinish.ManuelStart();
         }

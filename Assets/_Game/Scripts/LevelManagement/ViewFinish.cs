@@ -1,5 +1,7 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
@@ -8,31 +10,60 @@ namespace TemplateFx
 
     public class ViewFinish : MonoBehaviour
     {
-        [SerializeField] GameObject winPanelObject;
-        [SerializeField] GameObject losePanelObject;
+        [SerializeField] private GameObject _winPanelObject;
+        [SerializeField] private GameObject _losePanelObject;
+        private const string uiWinStr = "ui_win";
+        private const string uiLoseStr = "ui_lose";
 
-        
-        
+        private void OnValidate()
+        {
+            if (_winPanelObject == null || _losePanelObject == null)
+            {
+                Transform[] childTranforms = GetComponentsInChildren<Transform>(true);
+                foreach (Transform child in childTranforms)
+                {
+
+                    if (_winPanelObject == null)
+                    {
+                        if (child.name == uiWinStr)
+                        {
+                            _winPanelObject = child.gameObject;
+                        }
+
+                    }
+                    if (_losePanelObject == null)
+                    {
+                        if (child.name == uiLoseStr)
+                        {
+                            _losePanelObject = child.gameObject;
+                        }
+
+                    }
+
+                }
+            }
+        }
 
         public void ManuelStart()
         {
             if(GameState.Instance.GetLevelStatus() == LevelFinishStatus.WIN)
             {
-                winPanelObject.SetActive(true);
-                losePanelObject.SetActive(false);
+                _winPanelObject.SetActive(true);
+                _losePanelObject.SetActive(false);
+                _winPanelObject.transform.localScale = new Vector3(1, 0, 1);
+                _winPanelObject.transform.DOScaleY(1, 0.4f);
             }
             else
             {
-                winPanelObject.SetActive(false);
-                losePanelObject.SetActive(true);
+                _winPanelObject.SetActive(false);
+                _losePanelObject.SetActive(true);
+                _losePanelObject.transform.localScale = new Vector3(1, 0, 1);
+                _losePanelObject.transform.DOScaleY(1, 0.4f);
             }
         }
         
 
-        public void OnFinishButtonPressed()
-        {
-            GameState.Instance.OnPrepareNewGame();
-        }
+        
       
     }
 

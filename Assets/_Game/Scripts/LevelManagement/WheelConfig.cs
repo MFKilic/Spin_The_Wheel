@@ -52,7 +52,7 @@ public class WheelConfig : ScriptableObject
             for(int i = 0; i < slices.Length; i++)
             {
                 slices[i].sliceSprite_value = _prizeSpritesData.wheelPrizeSprites[UnityEngine.Random.Range(0,_prizeSpritesData.wheelPrizeSprites.Length)];
-                slices[i].rewardAmount_value = UnityEngine.Random.Range(1, 100);
+                slices[i].rewardAmount_value = UnityEngine.Random.Range(1, 100) *  (1 + (int)selectedBaseSpriteOption_value);
             }
             randomizeWheel = false;
         }
@@ -79,7 +79,7 @@ public class WheelConfig : ScriptableObject
                 if (slice.sliceSprite_value == _prizeSpritesData.bombSprite)
                 {
                     slice.sliceSprite_value = _prizeSpritesData.wheelPrizeSprites[UnityEngine.Random.Range(0, _prizeSpritesData.wheelPrizeSprites.Length)];
-                    slice.rewardAmount_value = UnityEngine.Random.Range(1, 100);
+                    slice.rewardAmount_value = UnityEngine.Random.Range(1, 100) * (1 + (int)selectedBaseSpriteOption_value); 
                 }
             }
         }
@@ -92,7 +92,7 @@ public class WheelConfig : ScriptableObject
             if (slice.sliceSprite_value != null)
             {
                 string spriteName = slice.sliceSprite_value.name;
-                int iconIndex = spriteName.IndexOf("Icon");
+                int iconIndex = spriteName.IndexOf("Icon", StringComparison.OrdinalIgnoreCase);
 
                 if (iconIndex != -1)
                 {

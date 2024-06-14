@@ -45,6 +45,13 @@ public class UIPrizeController : MonoBehaviour
 
     public void SetText(int plusIndex)
     {
+        if(plusIndex == 0)
+        {
+            prizeText.text = string.Empty;
+            textIndex = 0;
+            return;
+        }
+
         int endValue = textIndex + plusIndex;
         DOTween.To(() => textIndex, x => {
             textIndex = x;
@@ -54,7 +61,15 @@ public class UIPrizeController : MonoBehaviour
 
     public void SetImageSprite(Sprite sprite)
     {
-        prizeImage.color = Color.white;
+        if(sprite != null)
+        {
+            prizeImage.color = Color.white;
+        }
+        else
+        {
+            prizeImage.color = new Color(0, 0, 0, 0);
+        }
+      
         prizeImage.sprite = sprite;
         prizeImage.transform.localScale = Vector3.zero;
 

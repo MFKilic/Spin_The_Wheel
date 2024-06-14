@@ -13,8 +13,8 @@ public class UISpinManager : MonoBehaviour
     [SerializeField] private Image uiSpinBase;
     [SerializeField] private Image uiSpinIndicator;
     [SerializeField] private UISpinController[] uiSpinControllers;
-    private float spinDuration = 3f; 
-    private int minSpins = 3; 
+    private float spinDuration = 3f;
+    private int minSpins = 3;
     private int maxSpins = 5;
     private float _targetRotation;
     private Tween _indicatorTween;
@@ -53,7 +53,7 @@ public class UISpinManager : MonoBehaviour
             Transform[] childTransforms = GetComponentsInChildren<Transform>(true);
             foreach (Transform child in childTransforms)
             {
-               
+
                 if (child.name.Contains(uiSpinIconName))
                 {
                     UISpinController controller = child.GetComponent<UISpinController>();
@@ -66,41 +66,49 @@ public class UISpinManager : MonoBehaviour
 
             uiSpinControllers = controllersList.ToArray();
         }
-        
+
     }
 
-  
+
     private void OnEnable()
     {
         LevelManager.Instance.eventManager.OnInitSpinEvent += EventManager_OnInitSpinEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent += EventManager_OnBombIsExplosedEvent;
+    }
+
+    private void EventManager_OnBombIsExplosedEvent()
+    {
+        transform.DOPunchPosition(Vector3.one * 15, 0.2f, 0);
     }
 
     private void EventManager_OnInitSpinEvent()
     {
-      
         var config = _datas.config;
-        Debug.Log("_datas.config" + config.wheelConfigs.Count + "_datasLevel " + _datas.level);
 
-        Debug.Log("_uiSpinController Lenght " + uiSpinControllers.Length);
         var wheelConfig = config.wheelConfigs[_datas.level - 1];
         spinDuration = wheelConfig.spinDuration_value;
         minSpins = wheelConfig.minSpin_value;
         maxSpins = wheelConfig.maxSpin_value;
         uiSpinBase.sprite = wheelConfig.selectedSprite;
         uiSpinIndicator.sprite = wheelConfig.indicatorSprite;
-
-       for(int i  = 0; i < uiSpinControllers.Length; i++)
+        transform.eulerAngles = new Vector3(0, 270, 0);
+        transform.DORotate(new Vector3(0, 0, 0), 0.5f).OnComplete(()=> LevelManager.Instance.eventManager.OnPreSpin());
+        for (int i = 0; i < uiSpinControllers.Length; i++)
         {
-            uiSpinControllers[i].GetImage().sprite = wheelConfig.slices[i].sliceSprite_value;
-            uiSpinControllers[i].GetText().text = wheelConfig.slices[i].rewardAmount_value.ToString().CurencyToLadder();
+            UISpinController controller = uiSpinControllers[i];
+
+            controller.SetNameString(wheelConfig.slices[i].sliceName);
+            controller.SetImageSprite(wheelConfig.slices[i].sliceSprite_value);
+            controller.SetText(wheelConfig.slices[i].rewardAmount_value.ToString().CurencyToLadder());
         }
-        LevelManager.Instance.eventManager.OnPreSpin();
-       
+        
+
     }
 
     private void OnDisable()
     {
         LevelManager.Instance.eventManager.OnInitSpinEvent -= EventManager_OnInitSpinEvent;
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
     }
 
     void Awake()
@@ -108,7 +116,6 @@ public class UISpinManager : MonoBehaviour
         if (_levelManager == null)
         {
             _levelManager = LevelManager.Instance;
-           
 
         }
         if (_datas == null)
@@ -119,38 +126,32 @@ public class UISpinManager : MonoBehaviour
 
 
 
-   
+
     public void SpinWheel()
     {
         if (uiSpinBase != null)
         {
 
             choosenListIndex = Random.Range(0, 8);
-           
+
             _targetRotation = (choosenListIndex * 45);
 
-            
+
             float randomizeFinishAngle = _targetRotation + (360f * Random.Range(minSpins, maxSpins + 1)) + Random.Range(-22.5f, 22.5f);
 
-            
+
             uiSpinBase.transform.DORotate(new Vector3(0, 0, randomizeFinishAngle), spinDuration, RotateMode.FastBeyond360)
                 .SetEase(Ease.InOutQuart)
-                .OnUpdate(OnSpinUpdate) 
-                .OnComplete(OnSpinComplete); 
+                .OnUpdate(OnSpinUpdate)
+                .OnComplete(OnSpinComplete);
             LevelManager.Instance.eventManager.OnDuringSpin();
         }
-        if(uiSpinBase == null)
-        {
-            Debug.Log("uiSppin = null ");
-        }
-       
+
     }
 
     private void OnSpinUpdate()
     {
         float currentRotation = uiSpinBase.transform.eulerAngles.z;
-        
-
 
         if (Mathf.Abs(currentRotation % 45) < 1)
         {
@@ -158,7 +159,7 @@ public class UISpinManager : MonoBehaviour
         }
     }
 
-    
+
     private void OnSpinComplete()
     {
         Debug.Log("Spin complete!");
@@ -171,14 +172,26 @@ public class UISpinManager : MonoBehaviour
     {
 
         UISpinController choosenUISpinController = uiSpinControllers[choosenListIndex];
-        choosenUISpinController.transform.DOPunchScale(Vector3.one, 1, 1);
-        UIManager.Instance.viewPlay.SetInfoCard(choosenUISpinController.GetImage().sprite,choosenUISpinController.GetNumber());
-        
-       
+
+        choosenUISpinController.transform.DOPunchScale(Vector3.one, 0.3f, 1).OnComplete(() =>
+        {
+            transform.DORotate(new Vector3(0, -90, 0), 0.5f);
+        });
+        UIManager.Instance.viewPlay.SetInfoCard(choosenUISpinController.GetImage().sprite,
+            choosenUISpinController.GetNumber(),
+            choosenUISpinController.GetNameString());
+
+
+        if(choosenUISpinController.GetNumber() == 0)
+        {
+            LevelManager.Instance.eventManager.OnBombIsExplosed();
+        }
         LevelManager.Instance.eventManager.OnAfterSpin();
-        LevelManager.Instance.eventManager.OnSpinIsSuccesful(true);
-      
-        
+
+
+
+
+
     }
 
     private void PlaySegmentAnimation()
@@ -195,5 +208,5 @@ public class UISpinManager : MonoBehaviour
             .OnComplete(() => uiSpinIndicator.transform.DORotate(Vector3.zero, 0.1f));
     }
 
-   
+
 }
