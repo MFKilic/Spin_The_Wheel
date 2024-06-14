@@ -18,10 +18,10 @@ public class WheelConfig : ScriptableObject
     [HideInInspector] public Sprite selectedSprite;
     [HideInInspector] public Sprite indicatorSprite; 
 
-    public int maxSpin_value;
-    public int minSpin_value;
+    public int maxSpin_value = 3;
+    public int minSpin_value = 2;
 
-    public int spinDuration_value;
+    public int spinDuration_value = 1;
 
     
 
@@ -91,6 +91,7 @@ public class WheelConfig : ScriptableObject
         {
             if (slice.sliceSprite_value != null)
             {
+                slice.sliceSpriteName = slice.sliceSprite_value.name;
                 string spriteName = slice.sliceSprite_value.name;
                 int iconIndex = spriteName.IndexOf("Icon", StringComparison.OrdinalIgnoreCase);
 
@@ -149,7 +150,8 @@ public class WheelConfig : ScriptableObject
 [System.Serializable]
 public class WheelSlice
 {
-    public string sliceName; 
+    public string sliceName;
+    public string sliceSpriteName;
     public Sprite sliceSprite_value; 
     public int rewardAmount_value; 
     public bool isBomb_value; 

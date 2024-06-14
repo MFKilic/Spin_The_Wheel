@@ -23,16 +23,27 @@ public class UIPrizeManager : MonoBehaviour
 
     private void OnValidate()
     {
-        if(uiPrizeRectTransform == null)
+        ValidateRectTransform();
+        ValidatePrizeControllers();
+#if UNITY_EDITOR
+        LoadPrefab();
+#endif
+    }
+
+    private void ValidateRectTransform()
+    {
+        if (uiPrizeRectTransform == null)
         {
             uiPrizeRectTransform = GetComponent<RectTransform>();
         }
+    }
+
+    private void ValidatePrizeControllers()
+    {
         if (uiPrizeControllers == null || uiPrizeControllers.Count == 0)
         {
             uiPrizeControllers.Clear();
-
-            Transform[] childTransforms = GetComponentsInChildren<Transform>(true);
-            foreach (Transform child in childTransforms)
+            foreach (Transform child in GetComponentsInChildren<Transform>(true))
             {
                 UIPrizeController controller = child.GetComponent<UIPrizeController>();
                 if (controller != null)
@@ -41,11 +52,14 @@ public class UIPrizeManager : MonoBehaviour
                 }
             }
         }
+    }
 
 #if UNITY_EDITOR
+    private void LoadPrefab()
+    {
         uiPrizePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-#endif
     }
+#endif
 
     private void OnEnable()
     {
@@ -53,6 +67,15 @@ public class UIPrizeManager : MonoBehaviour
         LevelManager.Instance.eventManager.OnBombIsExplosedEvent += EventManager_OnBombIsExplosedEvent;
     }
 
+    private void OnDisable()
+    {
+       
+        LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
+    }
+    private void OnDestroy()
+    {
+        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
+    }
     private void EventManager_OnBombIsExplosedEvent()
     {
         transform.DOPunchPosition(Vector3.one * 6, 0.3f, 0);
@@ -68,80 +91,66 @@ public class UIPrizeManager : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
-        LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
-    }
-
-
-
     public Transform CheckListImage(Image image, int index, string str)
     {
-        bool isImageAddedList = false;
+        bool isSpriteFound = false;
+        ResetChosenValues();
+        foreach (UIPrizeController controller in uiPrizeControllers)
+        {
+            if (controller.GetImage().sprite == image.sprite || controller.GetImage().sprite == null)
+            {
+                SetChosenValues(controller, image, index, str);
+                isSpriteFound = true;
+                break;
+            }
+        }
+        if (!isSpriteFound)
+        {
+            CreateNewPrizeController(image, index, str);
+        }
+        LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
+        return choosenController.transform;
+    }
+
+    private void ResetChosenValues()
+    {
         choosenImage = null;
         choosenNumber = 0;
         choosenName = string.Empty;
-        
-        foreach (UIPrizeController controller in uiPrizeControllers)
+    }
+
+    private void SetChosenValues(UIPrizeController controller, Image image, int index, string str)
+    {
+        choosenName = str;
+        choosenNumber = index;
+        choosenImage = image;
+        choosenController = controller;
+    }
+
+    private void CreateNewPrizeController(Image image, int index, string str)
+    {
+        GameObject go = Instantiate(uiPrizePrefab, transform);
+        UIPrizeController controller = go.GetComponent<UIPrizeController>();
+        if (controller != null)
         {
-            if (controller.GetImage().sprite == image.sprite)
-            {
-                choosenName = str;
-                choosenNumber = index;     
-                choosenController = controller;
-                isImageAddedList = true;
-                break;
-            }
-            else if (controller.GetImage().sprite == null)
-            {
-                choosenName = str;
-                choosenImage = image;
-                choosenNumber = index;
-                choosenController = controller;
-                isImageAddedList = true;
-                break;
-            }
-         
+            SetChosenValues(controller, image, index, str);
+            uiPrizeControllers.Add(controller);
         }
-
-        if (!isImageAddedList)
-        {
-            GameObject go = Instantiate(uiPrizePrefab, transform);
-            UIPrizeController controller = go.GetComponent<UIPrizeController>();
-
-            if (controller != null)
-            {
-                choosenImage = image;
-                choosenNumber = index;
-                choosenName = str;
-                choosenController = controller;
-                uiPrizeControllers.Add(controller);
-            }
-        }
-
-        Debug.Log(choosenController.transform.position + "ChoosenPos");
-
-        LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
-
-        return choosenController.transform;
     }
 
     public void SetImageAndText()
     {
-        if(choosenImage != null)
+        if (choosenImage != null)
         {
             choosenController.SetImageSprite(choosenImage.sprite);
         }
-
-        if(choosenNumber != 0)
+        if (choosenNumber != 0)
         {
             choosenController.SetPrizeName(choosenName);
             choosenController.SetText(choosenNumber);
         }
     }
 
-    
     void Start()
     {
         startYPos = uiPrizeRectTransform.position.y;
@@ -153,10 +162,5 @@ public class UIPrizeManager : MonoBehaviour
         {
             uiPrizeRectTransform.position = new Vector2(uiPrizeRectTransform.position.x, startYPos);
         }
-        //else if (uiPrizeRectTransform.position.y > (uiPrizeControllers.Count * 35) - startYPos)
-        //{
-        //    uiPrizeRectTransform.position = new Vector2(uiPrizeRectTransform.position.x, (uiPrizeControllers.Count * 35) - startYPos);
-        //}
-       // Debug.Log("Pos = "+uiPrizeControllers.Count * 35 + "Pos Y = "+ uiPrizeRectTransform.position.y);
     }
 }

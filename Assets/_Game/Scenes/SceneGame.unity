@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4035209}
+  - component: {fileID: 4035212}
   - component: {fileID: 4035211}
   - component: {fileID: 4035210}
   m_Layer: 5
@@ -201,6 +202,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4035208}
   m_CullTransparentMesh: 1
+--- !u!114 &4035212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc66b85594605c48ae2a9e7a92a7ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneType: 1
+  zoneNumberText: {fileID: 1881500879}
 --- !u!1001 &9758115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9825,6 +9840,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375013601}
+  - component: {fileID: 1375013604}
   - component: {fileID: 1375013603}
   - component: {fileID: 1375013602}
   m_Layer: 5
@@ -9895,6 +9911,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375013600}
   m_CullTransparentMesh: 1
+--- !u!114 &1375013604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375013600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc66b85594605c48ae2a9e7a92a7ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneType: 0
+  zoneNumberText: {fileID: 630367275}
 --- !u!1001 &1378291713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10724,6 +10754,8 @@ MonoBehaviour:
   - {fileID: 2060495568}
   - {fileID: 1307342270}
   - {fileID: 1919642400}
+  _safeZoneNumberList: 050000000a0000000f000000140000001900000023000000280000002d0000003200000037000000
+  _superZoneNumberList: 1e0000003c000000
 --- !u!1 &1506100367
 GameObject:
   m_ObjectHideFlags: 0
@@ -15107,8 +15139,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDestroyOnLoad: 0
   listOfSoundClasses:
-  - soundName: Sound
-    soundSource: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  - soundName: CardFlip
+    soundSource: {fileID: 8300000, guid: 97704c3811e5fd249a7189f61d4a332d, type: 3}
+  - soundName: Wheel
+    soundSource: {fileID: 8300000, guid: 10cfe02703965c642ae5bea199162479, type: 3}
+  - soundName: Bomb
+    soundSource: {fileID: 8300000, guid: f4e4298f8331a404fab524f54b7ba98e, type: 3}
+  - soundName: Click
+    soundSource: {fileID: 8300000, guid: 16d554f13c02b2e40bf9a9256ddc87fe, type: 3}
 --- !u!114 &2119787348
 MonoBehaviour:
   m_ObjectHideFlags: 0

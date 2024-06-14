@@ -7,7 +7,9 @@ using TemplateFx;
 
 public class UILevelController : MonoBehaviour
 {
-   [SerializeField]  private List<TextMeshProUGUI> _levelTexts = new List<TextMeshProUGUI>();
+    [SerializeField] private List<TextMeshProUGUI> _levelTexts = new List<TextMeshProUGUI>();
+    [SerializeField] private List<int> _safeZoneNumberList = new List<int>();
+    [SerializeField] private List<int> _superZoneNumberList = new List<int>();
     private int level = 1;
     private int singlePlusCount = -40;
     private int changePlusCount = -45;
@@ -17,17 +19,19 @@ public class UILevelController : MonoBehaviour
 
     private void OnValidate()
     {
-     
-        _levelTexts.Clear(); 
+
+        _levelTexts.Clear();
+        _superZoneNumberList.Clear();
+        _safeZoneNumberList.Clear();
 
         TextMeshProUGUI[] tmps = GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI tmp in tmps)
         {
-            _levelTexts.Add(tmp); 
+            _levelTexts.Add(tmp);
         }
 
         TextColorChange();
-      
+
     }
 
     private void TextColorChange()
@@ -38,10 +42,12 @@ public class UILevelController : MonoBehaviour
             _levelTexts[i].text = (i + 1).ToString();
             if ((i + 1) % 30 == 0)
             {
+                _superZoneNumberList.Add(i + 1);
                 _levelTexts[i].color = Color.yellow;
             }
             else if ((i + 1) % 5 == 0)
             {
+                _safeZoneNumberList.Add(i + 1);
                 _levelTexts[i].color = Color.green;
             }
             else
@@ -70,34 +76,41 @@ public class UILevelController : MonoBehaviour
 
     private void Instance_OnPrepareNewGameEvent()
     {
+        Debug.Log("Onprepare");
         TextColorChange();
         _levelTexts[0].color = Color.black;
         _levelTexts[0].transform.DOScale(Vector3.one * 1.2f, 1);
         transform.position = startPos;
     }
 
-   
+
     private void EventManager_OnNewSpinPrepareEvent()
     {
-       ChangeNumberPos();
+        ChangeNumberPos();
     }
 
     private void OnDisable()
     {
         LevelManager.Instance.eventManager.OnNewSpinPrepareEvent -= EventManager_OnNewSpinPrepareEvent;
         LevelManager.Instance.eventManager.OnSkipLevelEvent -= OnSkipLevelEvent;
-        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
+
         LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
+    }
+
+    private void OnDestroy()
+    {
+        GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
     }
 
     void Awake()
     {
+        LevelManager.Instance.datas.CopyZoneList(_safeZoneNumberList,_superZoneNumberList);
         startPos = transform.position;
         _levelTexts[0].color = Color.black;
         _levelTexts[0].transform.DOScale(Vector3.one * 1.2f, 1);
     }
 
-   
+
 
     public void ChangeNumberPos()
     {
@@ -121,12 +134,12 @@ public class UILevelController : MonoBehaviour
 
         _levelTexts[level].transform.DOScale(Vector3.one * 1.2f, 0.5f);
 
-        if ((level+1) % 30 == 0)
+        if ((level + 1) % 30 == 0)
         {
             UIManager.Instance.viewPlay.uiCardPanelMapFrame.color = Color.yellow;
             _levelTexts[level].color = Color.yellow;
         }
-        else if ((level+1) % 5 == 0)
+        else if ((level + 1) % 5 == 0)
         {
             UIManager.Instance.viewPlay.uiCardPanelMapFrame.color = Color.green;
             _levelTexts[level].color = Color.green;
@@ -137,7 +150,7 @@ public class UILevelController : MonoBehaviour
             UIManager.Instance.viewPlay.uiCardPanelMapFrame.color = Color.white;
             _levelTexts[level].color = Color.black;
         }
-        transform.DOLocalMoveX(crossCount, 0.5f).SetEase(Ease.OutCubic).OnComplete(()=> LevelManager.Instance.eventManager.OnInitSpin());
-        
+        transform.DOLocalMoveX(crossCount, 0.5f).SetEase(Ease.OutCubic).OnComplete(() => LevelManager.Instance.eventManager.OnInitSpin());
+
     }
 }

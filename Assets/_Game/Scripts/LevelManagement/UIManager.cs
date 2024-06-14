@@ -46,22 +46,11 @@ namespace TemplateFx
         private void OnFinishGameEvent(LevelFinishStatus levelFinish)
         {
             viewInit.gameObject.SetActive(false);
-            viewPlay.gameObject.SetActive(true);
+            viewPlay.gameObject.SetActive(false);
             viewFinish.gameObject.SetActive(true);
             viewFinish.ManuelStart();
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 
 

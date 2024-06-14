@@ -8,7 +8,6 @@ namespace TemplateFx
 
     public class ViewInit : MonoBehaviour
     {
-        // Start is called before the first frame update
         public void ViewInitStart(int number = 2)
         {
             gameObject.SetActive(false);

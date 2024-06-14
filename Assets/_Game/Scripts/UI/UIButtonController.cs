@@ -13,10 +13,9 @@ public class UIButtonController : MonoBehaviour, IClickable
     }
 
     [SerializeField] private ButtonTypes buttonType;
-
     [SerializeField] private Image buttonImage;
-
     [SerializeField] private Color startColor;
+
     public void OnClick()
     {
         switch (buttonType)
@@ -51,10 +50,9 @@ public class UIButtonController : MonoBehaviour, IClickable
             case ButtonTypes.StartGameSkip:
                 UIManager.Instance.viewInit.ViewInitStart(20);
                 break;
-
-
         }
 
+        SoundManager.Instance.SoundPlay("Click");
         transform.DOPunchScale(Vector3.one * 0.1f, 0.2f, 0, 0.2f);
         buttonImage.color = Color.gray;
         buttonImage.raycastTarget = false;
@@ -65,45 +63,46 @@ public class UIButtonController : MonoBehaviour, IClickable
     {
         buttonImage.color = startColor;
         buttonImage.raycastTarget = true;
-        LevelManager.Instance.eventManager.OnPreSpinEvent += EventManager_OnPreSpinEvent;
-        LevelManager.Instance.eventManager.OnContinueButtonPressedEvent += EventManager_OnContinueButtonPressedEvent;
-        LevelManager.Instance.eventManager.OnGiveUpButtonPressedEvent += EventManager_OnGiveUpButtonPressedEvent;
-        LevelManager.Instance.eventManager.OnDuringSpinEvent += EventManager_OnDuringSpinEvent;
+
+        LevelManager.Instance.eventManager.OnPreSpinEvent += OnPreSpinEvent;
+        LevelManager.Instance.eventManager.OnContinueButtonPressedEvent += OnContinueButtonPressedEvent;
+        LevelManager.Instance.eventManager.OnGiveUpButtonPressedEvent += OnGiveUpButtonPressedEvent;
+        LevelManager.Instance.eventManager.OnDuringSpinEvent += OnDuringSpinEvent;
     }
 
-    private void EventManager_OnDuringSpinEvent()
+    private void OnDisable()
     {
-      if(buttonType == ButtonTypes.Exit)
+        LevelManager.Instance.eventManager.OnPreSpinEvent -= OnPreSpinEvent;
+        LevelManager.Instance.eventManager.OnContinueButtonPressedEvent -= OnContinueButtonPressedEvent;
+        LevelManager.Instance.eventManager.OnGiveUpButtonPressedEvent -= OnGiveUpButtonPressedEvent;
+        LevelManager.Instance.eventManager.OnDuringSpinEvent -= OnDuringSpinEvent;
+    }
+
+    private void OnDuringSpinEvent()
+    {
+        if (buttonType == ButtonTypes.Exit)
         {
             buttonImage.color = Color.gray;
             buttonImage.raycastTarget = false;
         }
     }
 
-    private void EventManager_OnGiveUpButtonPressedEvent()
+    private void OnGiveUpButtonPressedEvent()
     {
         buttonImage.color = Color.gray;
         buttonImage.raycastTarget = false;
     }
 
-    private void EventManager_OnContinueButtonPressedEvent()
+    private void OnContinueButtonPressedEvent()
     {
         buttonImage.color = Color.gray;
         buttonImage.raycastTarget = false;
     }
 
-    private void EventManager_OnPreSpinEvent()
+    private void OnPreSpinEvent()
     {
-
         buttonImage.color = startColor;
         buttonImage.raycastTarget = true;
-    }
-
-    private void OnDisable()
-    {
-        LevelManager.Instance.eventManager.OnPreSpinEvent -= EventManager_OnPreSpinEvent;
-        LevelManager.Instance.eventManager.OnContinueButtonPressedEvent -= EventManager_OnContinueButtonPressedEvent;
-        LevelManager.Instance.eventManager.OnGiveUpButtonPressedEvent -= EventManager_OnGiveUpButtonPressedEvent;
     }
 
     private void OnValidate()
@@ -115,6 +114,4 @@ public class UIButtonController : MonoBehaviour, IClickable
 
         startColor = buttonImage.color;
     }
-
-
 }

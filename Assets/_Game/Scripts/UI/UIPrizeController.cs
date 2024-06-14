@@ -10,8 +10,10 @@ public class UIPrizeController : MonoBehaviour
     
     [SerializeField] private Image prizeImage;
     [SerializeField] private TextMeshProUGUI prizeText;
+
     private string prizeName;
     private int textIndex = 0;
+
     private const string uiCardItemImageStr = "ui_card_panel_prize_image";
     private const string uiCardItemTextStr = "ui_card_panel_prize_image_text";
 
@@ -97,15 +99,5 @@ public class UIPrizeController : MonoBehaviour
     {
         return prizeText;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

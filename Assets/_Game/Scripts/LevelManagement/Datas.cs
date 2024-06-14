@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Config;
+using Unity.VisualScripting;
 
 namespace TemplateFx
 {
     public class Datas : MonoBehaviour
     {
         private List<UIPrizeController> prizeControllerList = new List<UIPrizeController>();
+        private List<int> _safeZoneNumbers = new List<int>();
+        private List<int> _superZoneNumbers = new List<int>();
 
         public LevelConfig config;
         
@@ -16,8 +19,6 @@ namespace TemplateFx
         
         private void OnEnable()
         {
-            GameState.Instance.OnPrepareNewGameEvent += OnPrepareNewGameEvent;
-            GameState.Instance.OnFinishGameEvent += OnFinishGameEvent;
             LevelManager.Instance.eventManager.OnSpinIsSuccesfulEvent += EventManager_OnSpinIsSuccesfulEvent;
         }
 
@@ -25,7 +26,6 @@ namespace TemplateFx
         {
             if (isYes)
             {
-
                 LevelManager.Instance.eventManager.OnNewSpinPrepare();
                 level++;
                 Debug.Log("Level = " + level + "ConfigLengt = " + config.wheelConfigs.Count);
@@ -34,16 +34,13 @@ namespace TemplateFx
         }
 
         private void OnDisable()
-        {
-            GameState.Instance.OnPrepareNewGameEvent -= OnPrepareNewGameEvent;
-            GameState.Instance.OnFinishGameEvent -= OnFinishGameEvent;
+        {      
             LevelManager.Instance.eventManager.OnSpinIsSuccesfulEvent -= EventManager_OnSpinIsSuccesfulEvent;
         }
 
         private void Awake()
         {
             SetLevel(1);
-
         }
 
         private void OnValidate()
@@ -55,10 +52,37 @@ namespace TemplateFx
             
         }
 
-        private void OnPrepareNewGameEvent()
+        public int CheckZone(ZoneTypes type)
         {
-            
+            if(type == ZoneTypes.safe)
+            {
+                foreach (int number in _safeZoneNumbers)
+                {
+                    if(level<number)
+                    {
+                        return number;
+                    }
+                }
+            }
+            else if(type == ZoneTypes.super)
+            {
+                foreach (int number in _superZoneNumbers)
+                {
+                    if (level < number)
+                    {
+                        return number;
+                    }
+                }
+            }
+            return 0;
         }
+
+        public void CopyZoneList(List<int> safeZoneList,List<int> superZoneList)
+        {
+            _safeZoneNumbers = safeZoneList;
+            _superZoneNumbers = superZoneList;
+        }
+       
 
         public void SetLevel(int number)
         {
@@ -75,17 +99,7 @@ namespace TemplateFx
             return prizeControllerList;
         }
 
-        private void OnFinishGameEvent(LevelFinishStatus levelFinishStatus)
-        {
-            if (levelFinishStatus == LevelFinishStatus.WIN)
-            {
-               
-            }
-            else
-            {
-                ///
-            }
-        }
+       
 
 
     }
