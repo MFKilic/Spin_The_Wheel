@@ -31,10 +31,6 @@ namespace TemplateFx
                 Debug.Log("Level = " + level + "ConfigLengt = " + config.wheelConfigs.Count);
                 
             }
-            else
-            {
-
-            }
         }
 
         private void OnDisable()
@@ -46,7 +42,7 @@ namespace TemplateFx
 
         private void Awake()
         {
-            level = 1;
+            SetLevel(1);
 
         }
 
@@ -61,7 +57,12 @@ namespace TemplateFx
 
         private void OnPrepareNewGameEvent()
         {
-            level = 1;
+            
+        }
+
+        public void SetLevel(int number)
+        {
+            level = number;
         }
 
         private void OnFinishGameEvent(LevelFinishStatus levelFinishStatus)

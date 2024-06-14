@@ -26,10 +26,10 @@ namespace TemplateFx
 
         }
 
-        void Start()
+        private void Start()
         {
-            GameState.Instance.OnPrepareNewGame();
-        }    
+            GameState.Instance.OnInitGame();
+        }
     }
 
 }

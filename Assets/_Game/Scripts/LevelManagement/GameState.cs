@@ -16,6 +16,7 @@ namespace TemplateFx
         public enum GameStatus
         {
             NONE,
+            INIT,
             PREPARING,
             PLAYING,
             PAUSED,
@@ -30,6 +31,9 @@ namespace TemplateFx
         public GameStatus gameStatus;
 
         [HideInInspector] LevelFinishStatus levelFinishStat;
+
+        public delegate void OnInitGameDelegate();
+        public event OnInitGameDelegate OnInitGameEvent;
 
         public delegate void OnPrepareNewGameDelegate();
         public event OnPrepareNewGameDelegate OnPrepareNewGameEvent;
@@ -59,6 +63,16 @@ namespace TemplateFx
         public bool IsPlaying()
         {
             return playing;
+        }
+
+        public void OnInitGame()
+        {
+            if(GetGameStatus() != GameStatus.INIT)
+            {
+                OnInitGameEvent?.Invoke();
+                Debug.Log("_OnInitGameIsCalling_");
+                gameStatus = GameStatus.INIT;
+            }
         }
 
         public void OnPrepareNewGame()

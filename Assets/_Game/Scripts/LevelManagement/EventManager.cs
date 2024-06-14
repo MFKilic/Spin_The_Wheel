@@ -6,6 +6,13 @@ namespace TemplateFx
 {
     public class EventManager : MonoBehaviour
     {
+        public enum SpinStates
+        {
+            NONE, INIT, PRESPIN, DURING, FINISH, AFTER, ONSPINSUCCESFULL, NEWSPINPREPARE
+        }
+
+        private SpinStates spinstate;
+
         public delegate void OnFirstInputDelegate();
         public event OnFirstInputDelegate OnFirstInputEvent;
 
@@ -39,7 +46,18 @@ namespace TemplateFx
         public delegate void OnBombIsExplosedDelegate();
         public event OnBombIsExplosedDelegate OnBombIsExplosedEvent;
 
-        
+        public delegate void OnSkipLevelDelegate();
+        public event OnSkipLevelDelegate OnSkipLevelEvent;
+
+        public SpinStates GetState()
+        {
+            return spinstate;
+        }
+
+        public void SetStates(SpinStates state)
+        {
+            spinstate = state;
+        }
 
         public void OnFirstInputIsPressed()
         {
@@ -48,45 +66,81 @@ namespace TemplateFx
 
         public void OnInitSpin()
         {
-            OnInitSpinEvent?.Invoke();
-            Debug.Log("OnInitSpin");
+            if (GetState() != SpinStates.INIT)
+            {
+                OnInitSpinEvent?.Invoke();
+                Debug.Log("OnInitSpin");
+                SetStates(SpinStates.INIT);
+            }
+
         }
 
         public void OnPreSpin()
         {
-            OnPreSpinEvent?.Invoke();
-            Debug.Log("OnPreSpin");
+            if (GetState() != SpinStates.PRESPIN)
+            {
+
+                OnPreSpinEvent?.Invoke();
+                Debug.Log("OnPreSpin");
+                SetStates(SpinStates.PRESPIN);
+            }
         }
 
         public void OnDuringSpin()
         {
-            OnDuringSpinEvent?.Invoke();
-            Debug.Log("OnDuringSpin");
+            if (GetState() != SpinStates.DURING)
+            {
+                OnDuringSpinEvent?.Invoke();
+                Debug.Log("OnDuringSpin");
+
+                SetStates(SpinStates.DURING);
+            }
+
         }
 
         public void OnFinishSpin()
         {
-            OnFinishSpinEvent?.Invoke();
-            Debug.Log("OnFinishSpin");
+            if (GetState() != SpinStates.FINISH)
+            {
+                OnFinishSpinEvent?.Invoke();
+                Debug.Log("OnFinishSpin");
+                SetStates(SpinStates.FINISH);
+            }
+
         }
 
-      
+
         public void OnSpinIsSuccesful(bool isYes)
         {
-            OnSpinIsSuccesfulEvent?.Invoke(isYes);
-            Debug.Log("OnSpinIsSuccesful = " + isYes);
+            if (GetState() != SpinStates.ONSPINSUCCESFULL)
+            {
+                OnSpinIsSuccesfulEvent?.Invoke(isYes);
+                Debug.Log("OnSpinIsSuccesful = " + isYes);
+                SetStates(SpinStates.ONSPINSUCCESFULL);
+            }
+
         }
 
         public void OnAfterSpin()
         {
-            OnAfterSpinEvent?.Invoke();
-            Debug.Log("OnAfterSpin");
+            if (GetState() != SpinStates.AFTER)
+            {
+                OnAfterSpinEvent?.Invoke();
+                Debug.Log("OnAfterSpin");
+                SetStates(SpinStates.AFTER);
+            }
+
         }
 
         public void OnNewSpinPrepare()
         {
-            OnNewSpinPrepareEvent?.Invoke();
-            Debug.Log("OnNewSpinPrepare");
+            if (GetState() != SpinStates.NEWSPINPREPARE)
+            {
+                OnNewSpinPrepareEvent?.Invoke();
+                Debug.Log("OnNewSpinPrepare");
+                SetStates(SpinStates.NEWSPINPREPARE);
+            }
+
         }
 
         public void OnContinueButtonPressed()
@@ -104,6 +158,10 @@ namespace TemplateFx
             OnBombIsExplosedEvent?.Invoke();
         }
 
+        public void OnSkipLevel()
+        {
+            OnSkipLevelEvent?.Invoke();
+        }
 
     }
 }

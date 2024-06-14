@@ -9,7 +9,7 @@ public class UIButtonController : MonoBehaviour, IClickable
 {
     public enum ButtonTypes
     {
-        Spin, Exit, GiveUp, Continue, Quit, TryAgain
+        Spin, Exit, GiveUp, Continue, Quit, TryAgain, StartGame, StartGameSkip
     }
 
     [SerializeField] private ButtonTypes buttonType;
@@ -36,6 +36,7 @@ public class UIButtonController : MonoBehaviour, IClickable
                 GameState.Instance.OnFinishGame(LevelFinishStatus.LOSE);
                 break;
             case ButtonTypes.TryAgain:
+                LevelManager.Instance.datas.SetLevel(1);
                 GameState.Instance.OnPrepareNewGame();
                 LevelManager.Instance.eventManager.OnInitSpin();
                 Debug.Log("TryAgain");
@@ -43,6 +44,12 @@ public class UIButtonController : MonoBehaviour, IClickable
             case ButtonTypes.Quit:
                 Application.Quit();
                 Debug.Log("Quit");
+                break;
+            case ButtonTypes.StartGame:
+                UIManager.Instance.viewInit.ViewInitStart();
+                break;
+            case ButtonTypes.StartGameSkip:
+                UIManager.Instance.viewInit.ViewInitStart(20);
                 break;
 
 
@@ -77,23 +84,7 @@ public class UIButtonController : MonoBehaviour, IClickable
 
     private void EventManager_OnPreSpinEvent()
     {
-        switch (buttonType)
-        {
-            case ButtonTypes.Spin:
 
-              
-                break;
-            case ButtonTypes.Exit:
-
-                break;
-            case ButtonTypes.Continue:
-
-                break;
-            case ButtonTypes.GiveUp:
-
-                break;
-
-        }
         buttonImage.color = startColor;
         buttonImage.raycastTarget = true;
     }

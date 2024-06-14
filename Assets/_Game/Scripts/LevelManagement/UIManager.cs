@@ -13,25 +13,28 @@ namespace TemplateFx
         public ViewFinish viewFinish;
         private void OnEnable()
         {
-            LevelManager.Instance.eventManager.OnFirstInputEvent += OnFirstInputEvent;
+            GameState.Instance.OnInitGameEvent += OnInitGameEvent;
             GameState.Instance.OnPrepareNewGameEvent += OnPrepareNewGameEvent;
             GameState.Instance.OnFinishGameEvent += OnFinishGameEvent;
         }
 
-       
-
+        
         private void OnDisable()
         {
-            LevelManager.Instance.eventManager.OnFirstInputEvent -= OnFirstInputEvent;
+
+            GameState.Instance.OnInitGameEvent -= OnInitGameEvent;
             GameState.Instance.OnPrepareNewGameEvent -= OnPrepareNewGameEvent;
+            GameState.Instance.OnFinishGameEvent -= OnFinishGameEvent;
         }
 
-        private void OnFirstInputEvent()
+    
+        private void OnInitGameEvent()
         {
-            
+            viewInit.gameObject.SetActive(true);
+            viewPlay.gameObject.SetActive(false);
+            viewFinish.gameObject.SetActive(false);
         }
-
-       
+  
         private void OnPrepareNewGameEvent()
         {
             viewInit.gameObject.SetActive(false);

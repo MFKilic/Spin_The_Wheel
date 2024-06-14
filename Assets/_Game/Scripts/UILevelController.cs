@@ -53,8 +53,14 @@ public class UILevelController : MonoBehaviour
     private void OnEnable()
     {
         LevelManager.Instance.eventManager.OnNewSpinPrepareEvent += EventManager_OnNewSpinPrepareEvent;
+        LevelManager.Instance.eventManager.OnSkipLevelEvent += OnSkipLevelEvent;
         GameState.Instance.OnPrepareNewGameEvent += Instance_OnPrepareNewGameEvent;
         LevelManager.Instance.eventManager.OnBombIsExplosedEvent += EventManager_OnBombIsExplosedEvent;
+    }
+
+    private void OnSkipLevelEvent()
+    {
+        ChangeNumberPos();
     }
 
     private void EventManager_OnBombIsExplosedEvent()
@@ -73,13 +79,13 @@ public class UILevelController : MonoBehaviour
    
     private void EventManager_OnNewSpinPrepareEvent()
     {
-
        ChangeNumberPos();
     }
 
     private void OnDisable()
     {
         LevelManager.Instance.eventManager.OnNewSpinPrepareEvent -= EventManager_OnNewSpinPrepareEvent;
+        LevelManager.Instance.eventManager.OnSkipLevelEvent -= OnSkipLevelEvent;
         GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
         LevelManager.Instance.eventManager.OnBombIsExplosedEvent -= EventManager_OnBombIsExplosedEvent;
     }
@@ -87,7 +93,8 @@ public class UILevelController : MonoBehaviour
     void Awake()
     {
         startPos = transform.position;
-      
+        _levelTexts[0].color = Color.black;
+        _levelTexts[0].transform.DOScale(Vector3.one * 1.2f, 1);
     }
 
    
