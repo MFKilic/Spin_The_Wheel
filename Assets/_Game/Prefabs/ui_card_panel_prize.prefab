@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 46.48476, y: -0.24259}
+  m_AnchoredPosition: {x: 62, y: -0.24259}
   m_SizeDelta: {x: 39.9722, y: 34.515}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5583968278052752914
@@ -264,3 +264,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prizeImage: {fileID: 703283093366353776}
   prizeText: {fileID: 1784368463440234078}
+  prizeImageRectTransform: {fileID: 136821978713776893}

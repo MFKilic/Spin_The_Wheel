@@ -13,6 +13,7 @@ public class UICardInfoController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardInfoNameText;
     [SerializeField] private GameObject cardInfoGiveUpButton;
     [SerializeField] private GameObject cardInfoContinueButton;
+    [SerializeField] private RectTransform cardInfoImageRectTransform;
 
     private const string cardInfoNameTextStr = "ui_card_item_name_text";
     private const string cardInfoImageStr = "ui_card_item_image";
@@ -21,6 +22,8 @@ public class UICardInfoController : MonoBehaviour
     private const string cardInfoContinueButtonStr = "ui_card_button_continue";
 
     private Vector3 startPos;
+    private Vector2 spriteSize;
+    private Vector3 spriteVector;
     private Color normalColor;
     private Transform posTr;
     private bool isBomb;
@@ -28,7 +31,7 @@ public class UICardInfoController : MonoBehaviour
     private void OnValidate()
     {
         if (cardInfoImage == null || cardInfoText == null || cardInfoNameText == null ||
-            cardInfoGiveUpButton == null || cardInfoContinueButton == null || cardInfoImageBackGround == null)
+            cardInfoGiveUpButton == null || cardInfoContinueButton == null || cardInfoImageBackGround == null ||cardInfoImageRectTransform == null)
         {
             AssignMissingComponents();
         }
@@ -39,6 +42,13 @@ public class UICardInfoController : MonoBehaviour
         if (cardInfoImageBackGround == null)
         {
             cardInfoImageBackGround = GetComponent<Image>();
+        }
+        if (cardInfoImageRectTransform == null)
+        {
+            if (cardInfoImage != null)
+            {
+                cardInfoImageRectTransform = cardInfoImage.transform.GetComponent<RectTransform>();
+            }
         }
 
         Transform[] childTransforms = GetComponentsInChildren<Transform>(true);
@@ -111,7 +121,7 @@ public class UICardInfoController : MonoBehaviour
         transform.position = startPos;
         if (!isBomb)
         {
-            posTr = UIManager.Instance.viewPlay.prizeManager.CheckListImage(cardInfoImage, GetNumber(), GetName());
+            posTr = UIManager.Instance.viewPlay.prizeManager.CheckListImage(cardInfoImage, GetNumber(), GetName(), spriteSize,spriteVector);
         }
         transform.localScale = new Vector3(0, 1, 1);
         transform.DOScaleX(1, 0.5f).OnComplete(GoToLogPosition);
@@ -154,14 +164,30 @@ public class UICardInfoController : MonoBehaviour
         {
             SoundManager.Instance.SoundPlay("CardFlip");
             UIManager.Instance.viewPlay.prizeManager.SetImageAndText();
+            if (LevelManager.Instance.datas.isWin)
+            {
+                UIManager.Instance.viewPlay.Win();
+            }
+
         });
         transform.DOScale(Vector3.one * 0.15f, 1).OnComplete(() => transform.localScale = Vector3.zero);
     }
 
-    public void SetInfoCard(Sprite sprite, int number, string name)
+    public void SetInfoCard(Sprite sprite, int number, string name, Vector2 spriteSizeV2)
     {
         isBomb = number <= 0;
         cardInfoNameText.text = name;
+         
+        spriteSize = spriteSizeV2;
+        
+        float currentWidth = cardInfoImageRectTransform.rect.width;
+        float currentHeight = cardInfoImageRectTransform.rect.height;
+
+        float scaleX = spriteSize.x / currentWidth;
+        float scaleY = spriteSize.y / currentHeight;
+        spriteVector = new Vector3(scaleX / 6f, scaleY / 6f, 1f);
+        cardInfoImageRectTransform.localScale = spriteVector;
+        
         cardInfoImage.sprite = sprite;
         cardInfoText.text = isBomb ? string.Empty : number.ToString();
         cardInfoImageBackGround.color = isBomb ? Color.red : normalColor;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace TemplateFx
 {
@@ -15,14 +16,17 @@ namespace TemplateFx
         private const string uiCardInfoPanelStr = "ui_card_info_panel";
         private const string uiCardPanelPanelMaskStr = "ui_card_info_panel_mask_image";
         private const string uiCardPanelPanelVerticalLayoutStr = "ui_card_info_panel_vertical_layout";
+        private const string uiWinCardStr = "ui_win_card";
 
         public UISpinManager spinManager = null;
         public UIPrizeManager prizeManager = null;
         public UICardInfoController cardInfoController = null;
         public Image uiCardPanelMapFrame;
+        [SerializeField] private Image uiWinCard;
 
         private void OnValidate()
         {
+            InitializeComponent(ref uiWinCard, uiWinCardStr);
             InitializeComponent(ref cardInfoController, uiCardStr);
             InitializeComponent(ref uiCardPanelMapFrame, uiCardPanelMapFrameStr, uiCardPanelZoneStr);
             InitializeComponent(ref spinManager, uiCardSpinStr);
@@ -85,15 +89,23 @@ namespace TemplateFx
             }
         }
 
+        public void Win()
+        {
+            uiWinCard.gameObject.SetActive(true);
+            uiWinCard.transform.localScale = Vector3.zero;
+            uiWinCard.transform.DOScale(Vector3.one, 0.5f);
+        }
+
         public void ViewPlayStart()
         {
             Debug.Log("PlayStart");
+            uiWinCard.gameObject.SetActive(false);
             LevelManager.Instance.eventManager.OnInitSpin();
         }
 
-        public void SetInfoCard(Sprite sprite, int number, string name)
+        public void SetInfoCard(Sprite sprite, int number, string name,Vector2 spriteSize)
         {
-            cardInfoController.SetInfoCard(sprite, number, name);
+            cardInfoController.SetInfoCard(sprite, number, name,spriteSize);
         }
     }
 }

@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinPartImage: {fileID: 4598116364443066809}
   spinPartText: {fileID: 763927703441100220}
+  spinPartRectTransform: {fileID: 4026805251202911252}
 --- !u!1 &5039479491609756379
 GameObject:
   m_ObjectHideFlags: 0

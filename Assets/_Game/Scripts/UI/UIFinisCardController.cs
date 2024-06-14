@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIFinisCardController : MonoBehaviour
 {
     [SerializeField] private Image cardEndImage;
+    [SerializeField] private RectTransform cardEndImageRect;
     [SerializeField] private TextMeshProUGUI cardEndText;
     [SerializeField] private TextMeshProUGUI cardEndNameText;
     private const string cardEndNameTextStr = "ui_card_end_item_name_text";
@@ -14,12 +15,19 @@ public class UIFinisCardController : MonoBehaviour
     private const string cardEndTextStr = "ui_card_end_item_text";
     private void OnValidate()
     {
-        if(cardEndImage == null || cardEndText == null || cardEndNameText == null)
+        if (cardEndImageRect == null)
+        {
+            if (cardEndImage != null)
+            {
+                cardEndImageRect = cardEndImage.transform.GetComponent<RectTransform>();
+            }
+        }
+
+        if (cardEndImage == null || cardEndText == null || cardEndNameText == null)
         {
             Transform[] childTranforms = GetComponentsInChildren<Transform>(true);
             foreach (Transform child in childTranforms)
             {
-              
 
                 if (cardEndNameText == null)
                 {
@@ -51,9 +59,10 @@ public class UIFinisCardController : MonoBehaviour
         }
     }
 
-    public void SetImage(Sprite sprite)
+    public void SetImage(Sprite sprite, Vector3 vector3)
     {
-       cardEndImage.sprite = sprite;
+        cardEndImageRect.localScale = vector3;
+        cardEndImage.sprite = sprite;
     }
 
     public void SetNumberText(string str)
@@ -66,5 +75,7 @@ public class UIFinisCardController : MonoBehaviour
         cardEndNameText.text = str;
     }
 
-    
+
+
+
 }

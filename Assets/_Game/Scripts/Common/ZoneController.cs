@@ -11,8 +11,8 @@ namespace TemplateFx
     }
     public class ZoneController : MonoBehaviour
     {
-        private const string zoneTextSuperStr = "ui_card_panel_zone_super_text";
-        private const string zoneTextSafeStr = "ui_card_panel_zone_safe_text";
+        private const string zoneTextSuperStr = "ui_card_panel_zone_super_text_number";
+        private const string zoneTextSafeStr = "ui_card_panel_zone_safe_text_number";
         [SerializeField] private ZoneTypes zoneType;
         [SerializeField] private TextMeshProUGUI zoneNumberText;
 
@@ -42,17 +42,30 @@ namespace TemplateFx
         private void OnEnable()
         {
             LevelManager.Instance.eventManager.OnInitSpinEvent += EventManager_OnInitSpinEvent;
+            GameState.Instance.OnPrepareNewGameEvent += Instance_OnPrepareNewGameEvent;
+        }
+
+        private void Instance_OnPrepareNewGameEvent()
+        {
+            gameObject.SetActive(true);
         }
 
         private void EventManager_OnInitSpinEvent()
         {
             int nextNumber = LevelManager.Instance.datas.CheckZone(zoneType);
+
+            if(nextNumber == 0)
+            {
+                gameObject.SetActive(false);
+            }
+            
             zoneNumberText.text = nextNumber.ToString();
         }
 
         private void OnDestroy()
         {
             LevelManager.Instance.eventManager.OnInitSpinEvent -= EventManager_OnInitSpinEvent;
+            GameState.Instance.OnPrepareNewGameEvent -= Instance_OnPrepareNewGameEvent;
         }
     }
 

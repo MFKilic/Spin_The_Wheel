@@ -42,8 +42,9 @@ public class UIFinishCardManager : MonoBehaviour
                 UIFinisCardController controller = go.GetComponent<UIFinisCardController>();
 
                 controller.SetNameText(card.GetName());
-                controller.SetImage(card.GetImage().sprite);
+                controller.SetImage(card.GetImage().sprite,card.GetFinishCardVector());
                 controller.SetNumberText(card.GetText().text);
+              
 
                 controllerList.Add(controller);
             }

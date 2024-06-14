@@ -23,6 +23,7 @@ public class UISpinManager : MonoBehaviour
     private LevelManager levelManager;
     private Datas datas;
     private int chosenListIndex = 0;
+    private Tween rotateTween;
 
     private void OnValidate()
     {
@@ -106,15 +107,15 @@ public class UISpinManager : MonoBehaviour
         uiSpinIndicator.sprite = wheelConfig.indicatorSprite;
 
         transform.eulerAngles = new Vector3(0, 270, 0);
-        transform.DORotate(Vector3.zero, 0.5f).OnComplete(() => LevelManager.Instance.eventManager.OnPreSpin());
+      rotateTween = transform.DORotate(Vector3.zero, 0.5f).OnComplete(() => LevelManager.Instance.eventManager.OnPreSpin());
 
         for (int i = 0; i < uiSpinControllers.Length; i++)
         {
             var controller = uiSpinControllers[i];
             var slice = wheelConfig.slices[i];
-
+           
             controller.SetNameString(slice.sliceName);
-            controller.SetImageSprite(slice.sliceSprite_value);
+            controller.SetImageSprite(slice.sliceSprite_value,slice.spriteWith,slice.spriteHeight);
             controller.SetText(slice.rewardAmount_value.ToString().CurencyToLadder());
         }
     }
@@ -122,7 +123,11 @@ public class UISpinManager : MonoBehaviour
     public void SpinWheel()
     {
         if (uiSpinBase == null) return;
-
+        if(rotateTween != null)
+        {
+            rotateTween.Kill();
+        }
+        transform.eulerAngles = Vector3.zero;
         chosenListIndex = Random.Range(0, 8);
         targetRotation = chosenListIndex * 45;
         float randomizeFinishAngle = targetRotation + (360f * Random.Range(minSpins, maxSpins + 1)) + Random.Range(-22.5f, 22.5f);
@@ -157,14 +162,14 @@ public class UISpinManager : MonoBehaviour
     {
         var chosenUISpinController = uiSpinControllers[chosenListIndex];
 
-        chosenUISpinController.transform.DOPunchScale(Vector3.one, 0.3f, 1).OnComplete(() =>
+        chosenUISpinController.transform.DOPunchScale(Vector3.one * 0.2f, 0.3f, 1).OnComplete(() =>
         {
             transform.DORotate(new Vector3(0, -90, 0), 0.5f);
         });
 
         UIManager.Instance.viewPlay.SetInfoCard(chosenUISpinController.GetImage().sprite,
                                                 chosenUISpinController.GetNumber(),
-                                                chosenUISpinController.GetNameString());
+                                                chosenUISpinController.GetNameString(), chosenUISpinController.GetSpriteSize());
 
         if (chosenUISpinController.GetNumber() == 0)
         {

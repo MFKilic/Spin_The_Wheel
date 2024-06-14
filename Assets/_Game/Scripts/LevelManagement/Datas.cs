@@ -15,6 +15,8 @@ namespace TemplateFx
         public LevelConfig config;
         
         public int level;
+
+        public bool isWin;
        
         
         private void OnEnable()
@@ -26,9 +28,16 @@ namespace TemplateFx
         {
             if (isYes)
             {
+                Debug.Log("Level = " + level + "ConfigLengt = " + config.wheelConfigs.Count);
+                if(level == config.wheelConfigs.Count)
+                {
+                    isWin = true;
+                    
+                    return;
+                }
                 LevelManager.Instance.eventManager.OnNewSpinPrepare();
                 level++;
-                Debug.Log("Level = " + level + "ConfigLengt = " + config.wheelConfigs.Count);
+                
                 
             }
         }

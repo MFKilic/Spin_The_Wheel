@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TemplateFx;
 using DG.Tweening;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class UIPrizeManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class UIPrizeManager : MonoBehaviour
     private int choosenNumber = 0;
     private float startYPos = 0;
     private string choosenName = string.Empty;
+    private Vector2 spriteSize;
 
     private void OnValidate()
     {
@@ -85,13 +87,13 @@ public class UIPrizeManager : MonoBehaviour
     {
         foreach (UIPrizeController controller in uiPrizeControllers)
         {
-            controller.SetImageSprite(null);
+            controller.SetImageSprite(null,Vector2.zero);
             controller.SetText(0);
             LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
         }
     }
 
-    public Transform CheckListImage(Image image, int index, string str)
+    public Transform CheckListImage(Image image, int index, string str,Vector2 spriteSizeV2,Vector3 finishCardVector)
     {
         bool isSpriteFound = false;
         ResetChosenValues();
@@ -99,14 +101,14 @@ public class UIPrizeManager : MonoBehaviour
         {
             if (controller.GetImage().sprite == image.sprite || controller.GetImage().sprite == null)
             {
-                SetChosenValues(controller, image, index, str);
+                SetChosenValues(controller, image, index, str, spriteSizeV2,finishCardVector);
                 isSpriteFound = true;
                 break;
             }
         }
         if (!isSpriteFound)
         {
-            CreateNewPrizeController(image, index, str);
+            CreateNewPrizeController(image, index, str, spriteSizeV2,finishCardVector);
         }
         LevelManager.Instance.datas.CopyPrizeList(uiPrizeControllers);
         return choosenController.transform;
@@ -119,21 +121,23 @@ public class UIPrizeManager : MonoBehaviour
         choosenName = string.Empty;
     }
 
-    private void SetChosenValues(UIPrizeController controller, Image image, int index, string str)
+    private void SetChosenValues(UIPrizeController controller, Image image, int index, string str, Vector2 spriteSizeV2, Vector3 finishCardVector)
     {
         choosenName = str;
         choosenNumber = index;
         choosenImage = image;
         choosenController = controller;
+        spriteSize = spriteSizeV2;
+        controller.SetFinishCardVector(finishCardVector);
     }
 
-    private void CreateNewPrizeController(Image image, int index, string str)
+    private void CreateNewPrizeController(Image image, int index, string str, Vector2 spriteSizeV2, Vector3 finishCardVector)
     {
         GameObject go = Instantiate(uiPrizePrefab, transform);
         UIPrizeController controller = go.GetComponent<UIPrizeController>();
         if (controller != null)
         {
-            SetChosenValues(controller, image, index, str);
+            SetChosenValues(controller, image, index, str, spriteSizeV2, finishCardVector);
             uiPrizeControllers.Add(controller);
         }
     }
@@ -142,7 +146,7 @@ public class UIPrizeManager : MonoBehaviour
     {
         if (choosenImage != null)
         {
-            choosenController.SetImageSprite(choosenImage.sprite);
+            choosenController.SetImageSprite(choosenImage.sprite,spriteSize);
         }
         if (choosenNumber != 0)
         {

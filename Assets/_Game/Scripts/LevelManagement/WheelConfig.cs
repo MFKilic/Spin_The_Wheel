@@ -29,7 +29,7 @@ public class WheelConfig : ScriptableObject
 
     private void OnValidate()
     {
-
+        
         if (_baseSpriteOptions == null)
         {
             _baseSpriteOptions = Resources.Load<WheelBaseSpritesOptions>("WheelBaseSpritesOptions");
@@ -56,7 +56,7 @@ public class WheelConfig : ScriptableObject
             }
             randomizeWheel = false;
         }
-
+  
 
         BombControl();
 
@@ -92,6 +92,8 @@ public class WheelConfig : ScriptableObject
             if (slice.sliceSprite_value != null)
             {
                 slice.sliceSpriteName = slice.sliceSprite_value.name;
+                slice.spriteWith = slice.sliceSprite_value.texture.width;
+                slice.spriteHeight = slice.sliceSprite_value.texture.height;
                 string spriteName = slice.sliceSprite_value.name;
                 int iconIndex = spriteName.IndexOf("Icon", StringComparison.OrdinalIgnoreCase);
 
@@ -154,5 +156,7 @@ public class WheelSlice
     public string sliceSpriteName;
     public Sprite sliceSprite_value; 
     public int rewardAmount_value; 
-    public bool isBomb_value; 
+    public bool isBomb_value;
+    public float spriteWith;
+    public float spriteHeight;
 }
