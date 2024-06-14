@@ -68,6 +68,16 @@ public class UIButtonController : MonoBehaviour, IClickable
         LevelManager.Instance.eventManager.OnPreSpinEvent += EventManager_OnPreSpinEvent;
         LevelManager.Instance.eventManager.OnContinueButtonPressedEvent += EventManager_OnContinueButtonPressedEvent;
         LevelManager.Instance.eventManager.OnGiveUpButtonPressedEvent += EventManager_OnGiveUpButtonPressedEvent;
+        LevelManager.Instance.eventManager.OnDuringSpinEvent += EventManager_OnDuringSpinEvent;
+    }
+
+    private void EventManager_OnDuringSpinEvent()
+    {
+      if(buttonType == ButtonTypes.Exit)
+        {
+            buttonImage.color = Color.gray;
+            buttonImage.raycastTarget = false;
+        }
     }
 
     private void EventManager_OnGiveUpButtonPressedEvent()

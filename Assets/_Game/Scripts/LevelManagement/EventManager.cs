@@ -112,12 +112,11 @@ namespace TemplateFx
 
         public void OnSpinIsSuccesful(bool isYes)
         {
-            if (GetState() != SpinStates.ONSPINSUCCESFULL)
-            {
+            
                 OnSpinIsSuccesfulEvent?.Invoke(isYes);
                 Debug.Log("OnSpinIsSuccesful = " + isYes);
                 SetStates(SpinStates.ONSPINSUCCESFULL);
-            }
+            
 
         }
 
